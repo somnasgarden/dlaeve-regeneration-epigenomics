@@ -41,7 +41,9 @@ dlaeve-regeneration-epigenomics/
 │   ├── 13_entropy_and_novel_patterns.R
 │   ├── 14_machine_learning.R
 │   ├── 15_te_age_methylation.R
-│   └── 16_cross_species_comparison.R
+│   ├── 16_cross_species_comparison.R
+│   ├── 17_te_tf_methylation_landscape.R
+│   └── 18_sox19a_gviz_tf_chipseeker.R
 │
 ├── results/                          Output data from cluster + local runs (not tracked)
 │
@@ -51,7 +53,6 @@ dlaeve-regeneration-epigenomics/
 │
 ├── papers/                           Paper drafts and references
 │   ├── 00_draft_outline.md               Findings outline with 15 key results
-│   ├── 01_nature_short.md                Nature-style short paper (~3500 words)
 │   └── 02_comprehensive.md              Full comprehensive paper (~8000 words)
 │
 ├── report.html                      Interactive HTML5 wiki with all figures and analysis
@@ -77,7 +78,7 @@ The analysis proceeds in eight stages, each with its own subfolder under `cluste
 
 Each folder contains a `run.slurm` template: `sbatch run.slurm <script.R>`
 
-Local scripts (`local/01–13`) perform downstream analysis, figure generation, and information-theoretic exploration.
+Local scripts (`local/01–18`) perform downstream analysis, figure generation, information-theoretic exploration, TE/TF methylation landscape analysis, and Sox19a locus visualization.
 
 ## Experimental Design
 
@@ -98,8 +99,8 @@ Mutual information between methylation direction and expression direction is MI 
 **2. Intergenic methylation is the primary regulatory mechanism — not promoters.**
 63% of DMPs fall in intergenic/intronic regions. DMPs cluster at 73x the expected rate within 1 kb, forming coherent regulatory domains.
 
-**3. Transcription factors are protected; effectors are targeted.**
-Functional TFs are depleted for DMPs (OR = 0.77, p = 5.87e-5). Hox genes: 0/27 with DMPs. Zinc finger effectors are enriched (22.4%).
+**3. Transcription factors are methylated but expression-protected.**
+DeepTFactor CNN-based TFs are enriched for DMPs (OR = 1.607, p = 4.32e-13) and DMRs (OR = 1.645, p = 3.33e-06). However, 0/6 DE TFs have any methylation changes. Top methylated TFs: ZFP2 (30 DMPs), Mafb (25), ATF2 (18). Hox genes: 0/27 with DMPs.
 
 **4. Module-specific methylation erases global correlation.**
 Global methylation-expression correlation is null (rho = -0.005, p = 0.80), but within-module correlations reach |r| = 0.81. Opposing module effects cancel at the genome-wide level.

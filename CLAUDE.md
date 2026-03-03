@@ -38,7 +38,7 @@ We integrate whole-genome bisulfite sequencing (WGBS), RNA-seq across multiple t
 ```
 cluster/          R scripts + SLURM jobs (8 pipeline stages, 41 files)
 local/            R scripts for local analysis (18 scripts)
-results/          Output data (untracked, ~965 files across 20 subdirectories)
+results/          Output data (untracked, 25 subdirectories)
 figures/          Publication-ready figures (fig01–fig19)
 papers/           Paper drafts + reference PDFs
 report.html       HTML5 wiki-style project report
@@ -139,12 +139,11 @@ Each subfolder has a `run.slurm` template: `sbatch run.slurm <script.R>`
 | File | What it is |
 |------|-----------|
 | `00_draft_outline.md` | Findings outline (15 key results, figure plan, candidate genes) |
-| `01_nature_short.md` | Nature-style short paper (~3500 words, topology-marking model) |
 | `02_comprehensive.md` | Full paper (~8000 words, 10 figures, complete methods) |
 | `Evidence that direct inhibition of .pdf` | Reference PDF (~23 MB) |
 | `The chromosome-level genome assembly of the slug...pdf` | *D. laeve* genome assembly paper (~14 MB) |
 
-### `results/` — Analysis output data (untracked, ~965 files)
+### `results/` — Analysis output data (untracked, 25 subdirectories)
 
 | Subfolder | Source | Contents |
 |-----------|--------|----------|
@@ -167,9 +166,12 @@ Each subfolder has a `run.slurm` template: `sbatch run.slurm <script.R>`
 | `17_machine_learning/` | local/14 | ML prediction of DE from methylation |
 | `18_te_age_methylation/` | local/15 | TE methylation by evolutionary age |
 | `19_cross_species/` | local/16 | Cross-species methylation comparison |
-| `20_te_tf_landscape/` | local/17 | TE genomic context, TF DMP/DMR enrichment, module enrichment |
-| `21_sox19a_tf_motifs/` | local/18 | Sox19a locus, TF ChIPseeker pies |
+| `20_te_tf_landscape/` | local/17 | TE genomic context, TF DMP/DMR enrichment (combined) |
+| `20_te_methylation/` | local/17 (split) | TE-DMP genomic context plots + tables |
+| `21_sox19a_tf_motifs/` | local/18 | Sox19a locus, TF ChIPseeker pies (combined) |
+| `21_tf_methylation/` | local/17 (split) | TF methylation rates, module enrichment, top TFs |
 | `22_publication_figures/` | local/11 | Publication-ready figure set |
+| `22_sox19a_locus/` | local/18 (split) | Sox19a locus plots + tables |
 
 ### `figures/` — Publication-ready figures (19 files)
 

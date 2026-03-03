@@ -12,7 +12,7 @@
 
 ## Abstract (Draft)
 
-DNA methylation is a key epigenetic mechanism regulating gene expression, yet its role in invertebrate regeneration remains largely unexplored. Here, we integrate whole-genome bisulfite sequencing (WGBS) and RNA-seq from regenerating tail tissue of the gastropod *Deroceras laeve* to characterize the epigenetic landscape of regeneration in a non-model invertebrate. We identify 18,754 differentially methylated positions (DMPs) affecting ~16% of expressed genes and use weighted gene co-expression network analysis (WGCNA) to reveal that methylation-expression relationships are entirely module-specific rather than genome-wide. Strikingly, transcription factors are significantly depleted for DMPs (OR=0.77, p=5.87x10^-5), with homeodomain/HMG-box TFs showing near-complete methylation protection (1.7% vs 15.8% genome-wide). Intergenic and intronic regions, not promoters, harbor the functionally relevant methylation changes, suggesting enhancer/silencer-mediated regulation. The yellow WGCNA module (cell cycle/mitotic genes) shows robust DMP enrichment across all statistical thresholds, while the brown module displays significant hypomethylation bias (padj=0.001). Network hub genes in the blue module are preferentially methylated, whereas black module hubs are entirely unmethylated. These findings demonstrate that invertebrate regeneration employs a non-canonical epigenetic program distinct from mammalian paradigms, where methylation acts through distal regulatory elements in a module-specific manner while actively protecting transcriptional control points.
+DNA methylation is a key epigenetic mechanism regulating gene expression, yet its role in invertebrate regeneration remains largely unexplored. Here, we integrate whole-genome bisulfite sequencing (WGBS) and RNA-seq from regenerating tail tissue of the gastropod *Deroceras laeve* to characterize the epigenetic landscape of regeneration in a non-model invertebrate. We identify 18,754 differentially methylated positions (DMPs) affecting ~16% of expressed genes and use weighted gene co-expression network analysis (WGCNA) to reveal that methylation-expression relationships are entirely module-specific rather than genome-wide. Strikingly, DeepTFactor CNN-predicted transcription factors are significantly enriched for DMPs (OR=1.607, p=4.32e-13), yet 0/6 differentially expressed TFs carry any methylation changes — revealing a paradox where methylation targets TFs without altering their expression. Intergenic and intronic regions, not promoters, harbor the functionally relevant methylation changes, suggesting enhancer/silencer-mediated regulation. The yellow WGCNA module (cell cycle/mitotic genes) shows robust DMP enrichment across all statistical thresholds, while the brown module displays significant hypomethylation bias (padj=0.001). Network hub genes in the blue module are preferentially methylated, whereas black module hubs are entirely unmethylated. These findings demonstrate that invertebrate regeneration employs a non-canonical epigenetic program distinct from mammalian paradigms, where methylation acts through distal regulatory elements in a module-specific manner while actively protecting transcriptional control points.
 
 ---
 
@@ -36,14 +36,17 @@ DNA methylation is a key epigenetic mechanism regulating gene expression, yet it
 - **Global correlations are non-significant in ALL regions** because opposing module effects cancel out
 - The relationship is ENTIRELY module-specific and region-specific
 
-### 3. Transcription factors are protected from methylation changes
+### 3. TF methylation paradox — targeted but expression-protected
 
-- **Fisher's exact test: OR=0.77, p=5.87x10^-5** (significant depletion)
-- Homeodomain/HMG TFs: only 1.7% have DMPs (vs 15.8% background)
-- ETS family: 0% with DMPs
-- Zinc finger TFs: 23.7% (enriched — these may be regulatory targets)
-- **Interpretation**: During regeneration, the cell protects core transcriptional regulators from epigenetic perturbation, while targeting downstream effectors
-- This is a novel finding with no precedent in invertebrate literature
+- **DeepTFactor CNN-based TFs: OR=1.607, p=4.32e-13** (significant ENRICHMENT for DMPs)
+- **DMR enrichment: OR=1.645, p=3.33e-06**
+- 14.8% of TFs have DMPs vs 9.8% of non-TFs
+- Top methylated TFs: ZFP2 (30 DMPs), Mafb (25), ATF2 (18), Hr96 (18)
+- **However, 0/6 DE TFs have any methylation changes** — methylation targets TFs but does NOT change their expression
+- 6 DE TFs (Scrt1, REPTOR-BP, Y-box, Catenin, sox8, CEBPA) achieve expression changes WITHOUT methylation
+- Old keyword-based finding (OR=0.77 depleted) was an artifact of incomplete TF identification
+- Hox genes: 0/27 with DMPs — master regulators still protected
+- **Interpretation**: Methylation marks TFs based on network position, not to control their transcriptional output
 
 ### 4. Yellow module is the epigenetic target of regeneration
 
@@ -134,7 +137,7 @@ DNA methylation is a key epigenetic mechanism regulating gene expression, yet it
 
 - **Enriched** (padj<0.05): Transcription factors (annotation-based, OR=1.45), Cytoskeleton/Motility (OR=1.45), "Other/Unknown" (OR=1.12)
 - **Depleted** (padj<0.05): RNA Processing (OR=0.72)
-- **Critical nuance**: The TF "enrichment" is driven by zinc finger proteins (22.4% DMP rate); non-zinc-finger TFs have only 15.7% (Fisher's p=0.002). DeepTFactor-predicted functional TFs remain DEPLETED. The distinction: zinc fingers are effector targets; core TFs are protected.
+- **Critical nuance**: DeepTFactor CNN-based TFs are ENRICHED for DMPs (OR=1.607, p=4.32e-13). The old keyword-based finding (OR=0.77 depleted) was an artifact of incomplete TF identification. Top methylated TFs: ZFP2, Mafb, ATF2, Hr96. Despite enrichment, 0/6 DE TFs are methylated — methylation targets TFs but doesn't change their expression.
 
 ---
 
@@ -203,7 +206,7 @@ DNA methylation is a key epigenetic mechanism regulating gene expression, yet it
 1. **First comprehensive methylation-transcriptome integration in a regenerating gastropod**
    - No prior study has done WGBS + RNA-seq + WGCNA in any mollusk regeneration system
 
-2. **TF protection hypothesis / Epigenetic firewall**: The finding that functional TFs (DeepTFactor, OR=0.77, p=5.87e-5) and Hox genes (0/27 DMPs) are actively depleted for DMPs, while zinc finger effectors (22.4%) are enriched, suggests a hierarchy: protect regulators, target effectors. This has implications for understanding why some organisms can regenerate and others cannot.
+2. **TF methylation paradox**: DeepTFactor CNN TFs are ENRICHED for DMPs (OR=1.607, p=4.32e-13) yet 0/6 DE TFs are methylated. Methylation targets TFs based on network topology, not to control expression. Hox genes (0/27 DMPs) remain protected. This suggests a hierarchy: TFs are marked but buffered, while effectors are the functional methylation targets.
 
 3. **Module-specificity invalidates genome-wide methylation-expression models**: The complete absence of global correlation (rho=-0.005) combined with strong module-level correlations (|r| up to 0.81) demonstrates that methylation effects are context-dependent. This challenges studies that report only genome-wide statistics.
 

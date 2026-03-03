@@ -363,7 +363,7 @@ details[open] summary { margin-bottom: 8px; }
 <tr><td>ICP promoters</td><td>91.6%</td><td>CpG island model structurally inapplicable</td></tr>
 <tr><td>Cochran-Armitage z</td><td>1.009 (p=0.31)</td><td>No dose-response &rarr; binary switch</td></tr>
 <tr><td>Hox genes with DMPs</td><td>0/27</td><td>Master regulators are protected</td></tr>
-<tr><td>TF DMP depletion OR</td><td>0.77 (p=5.87e-5)</td><td>Transcription factors actively protected</td></tr>
+<tr><td>TF DMP enrichment OR</td><td>1.607 (p=4.32e-13)</td><td>TFs targeted but expression-protected (0/6 DE TFs methylated)</td></tr>
 <tr><td>DMP clustering rate</td><td>73x expected</td><td>DMPs form coherent regulatory domains</td></tr>
 </table>
 </section>
@@ -424,7 +424,7 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/entropy_novel/figures/fig03_mutual_information_meth_expr.png" alt="MI analysis" onclick="openLightbox(this)">
+<img src="results/16_entropy_novel/figures/fig03_mutual_information_meth_expr.png" alt="MI analysis" onclick="openLightbox(this)">
 <div class="caption"><strong>MI Analysis.</strong> MI = 0.00009 bits (p=0.55), confirming complete statistical independence.</div>
 </div>
 <div class="fig-card">
@@ -462,7 +462,7 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <div class="caption"><strong>Methylation vs Expression by Region.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/intergenic_regulation/plots/fig_H01_sox19a_landscape.png" alt="Sox19a" onclick="openLightbox(this)">
+<img src="results/13_intergenic_regulation/plots/fig_H01_sox19a_landscape.png" alt="Sox19a" onclick="openLightbox(this)">
 <div class="caption"><strong>Sox19a Intergenic Regulation.</strong> Hypermethylation with INCREASED expression.</div>
 </div>
 </div>
@@ -482,11 +482,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/entropy_novel/figures/M02_binary_switch.png" alt="Binary switch" onclick="openLightbox(this)">
+<img src="results/16_entropy_novel/figures/M02_binary_switch.png" alt="Binary switch" onclick="openLightbox(this)">
 <div class="caption"><strong>Binary Switch.</strong> DE rate flat across methylation bins (p=0.31).</div>
 </div>
 <div class="fig-card">
-<img src="results/machine_learning/figures/N01_ml_dosage_models.png" alt="ML dosage" onclick="openLightbox(this)">
+<img src="results/17_machine_learning/figures/N01_ml_dosage_models.png" alt="ML dosage" onclick="openLightbox(this)">
 <div class="caption"><strong>ML Dosage Models.</strong> Neither linear nor quadratic models improve prediction.</div>
 </div>
 </div>
@@ -525,11 +525,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/entropy_novel/figures/M04_four_layer_model.png" alt="Four-layer" onclick="openLightbox(this)">
+<img src="results/16_entropy_novel/figures/M04_four_layer_model.png" alt="Four-layer" onclick="openLightbox(this)">
 <div class="caption"><strong>Four-Layer Model.</strong> Hierarchical epigenetic regulation.</div>
 </div>
 <div class="fig-card">
-<img src="results/publication_figures/fig07_four_layer_model.png" alt="Four-layer pub" onclick="openLightbox(this)">
+<img src="results/22_publication_figures/fig07_four_layer_model.png" alt="Four-layer pub" onclick="openLightbox(this)">
 <div class="caption"><strong>Publication-Ready Four-Layer Model.</strong></div>
 </div>
 </div>
@@ -551,11 +551,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/promoter/02_plots_png/04_pie_chart_classes.png" alt="Promoter pie" onclick="openLightbox(this)">
+<img src="results/04_promoter/02_plots_png/04_pie_chart_classes.png" alt="Promoter pie" onclick="openLightbox(this)">
 <div class="caption"><strong>Promoter Classification.</strong> 91.6% ICP dominance.</div>
 </div>
 <div class="fig-card">
-<img src="results/promoter/02_plots_png/01_scatter_GC_vs_OE.png" alt="GC vs O/E" onclick="openLightbox(this)">
+<img src="results/04_promoter/02_plots_png/01_scatter_GC_vs_OE.png" alt="GC vs O/E" onclick="openLightbox(this)">
 <div class="caption"><strong>GC% vs CpG O/E.</strong> Most cluster in ICP zone.</div>
 </div>
 </div>
@@ -588,35 +588,35 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/te_tf_landscape/plots/06_tf_vs_nontf_methylation_rate.png" alt="TF enrichment" onclick="openLightbox(this)">
+<img src="results/20_te_tf_landscape/plots/06_tf_vs_nontf_methylation_rate.png" alt="TF enrichment" onclick="openLightbox(this)">
 <div class="caption"><strong>TF vs Non-TF Methylation Rates.</strong> TFs ENRICHED (DeepTFactor).</div>
 </div>
 <div class="fig-card">
-<img src="results/te_tf_landscape/plots/07_tf_dmp_region_distribution.png" alt="TF regions" onclick="openLightbox(this)">
+<img src="results/20_te_tf_landscape/plots/07_tf_dmp_region_distribution.png" alt="TF regions" onclick="openLightbox(this)">
 <div class="caption"><strong>TF DMP Region Distribution.</strong> Gene body dominant.</div>
 </div>
 <div class="fig-card">
-<img src="results/te_tf_landscape/plots/01_dmp_genomic_context_te_vs_nonte.png" alt="TE context" onclick="openLightbox(this)">
+<img src="results/20_te_tf_landscape/plots/01_dmp_genomic_context_te_vs_nonte.png" alt="TE context" onclick="openLightbox(this)">
 <div class="caption"><strong>TE vs Non-TE DMP Context.</strong> TE-DMPs enriched intergenic.</div>
 </div>
 <div class="fig-card">
-<img src="results/sox19a_tf_motifs/plots/04_tf_nontf_region_comparison.png" alt="ChIPseeker TF" onclick="openLightbox(this)">
+<img src="results/21_sox19a_tf_motifs/plots/04_tf_nontf_region_comparison.png" alt="ChIPseeker TF" onclick="openLightbox(this)">
 <div class="caption"><strong>TF vs Non-TF Regions (ChIPseeker).</strong> TFs: 25% promoter.</div>
 </div>
 <div class="fig-card">
-<img src="results/novel_findings/plots/fig_G01_TF_methylation_protection.png" alt="TF protection old" onclick="openLightbox(this)">
+<img src="results/12_novel_findings/plots/fig_G01_TF_methylation_protection.png" alt="TF protection old" onclick="openLightbox(this)">
 <div class="caption"><strong>Old Keyword Analysis (superseded).</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/novel_findings/plots/fig_G03_concordance_heatmap.png" alt="Concordance" onclick="openLightbox(this)">
+<img src="results/12_novel_findings/plots/fig_G03_concordance_heatmap.png" alt="Concordance" onclick="openLightbox(this)">
 <div class="caption"><strong>Concordance Heatmap.</strong> All near 50% (chance).</div>
 </div>
 <div class="fig-card">
-<img src="results/novel_findings/plots/fig_G05_hub_vs_nonhub_dmps.png" alt="Hub vs nonhub" onclick="openLightbox(this)">
+<img src="results/12_novel_findings/plots/fig_G05_hub_vs_nonhub_dmps.png" alt="Hub vs nonhub" onclick="openLightbox(this)">
 <div class="caption"><strong>Hub vs Nonhub DMP Rates.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/novel_findings/plots/fig_G07_dmp_cluster_size_distribution.png" alt="DMP clusters" onclick="openLightbox(this)">
+<img src="results/12_novel_findings/plots/fig_G07_dmp_cluster_size_distribution.png" alt="DMP clusters" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP Cluster Sizes.</strong> 73x above expected rate.</div>
 </div>
 </div>
@@ -655,15 +655,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/methylation/PNGs/methylation_density.png" alt="Density" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/methylation_density.png" alt="Density" onclick="openLightbox(this)">
 <div class="caption"><strong>Methylation Density.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/PNGs/sample_correlation_heatmap.png" alt="Correlation" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/sample_correlation_heatmap.png" alt="Correlation" onclick="openLightbox(this)">
 <div class="caption"><strong>Sample Correlation.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/PNGs/pca_analysis.png" alt="PCA" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/pca_analysis.png" alt="PCA" onclick="openLightbox(this)">
 <div class="caption"><strong>PCA of Methylation.</strong></div>
 </div>
 </div>
@@ -691,15 +691,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/methylation/PNGs/manhattan_plot_methylation_differences.png" alt="Manhattan" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/manhattan_plot_methylation_differences.png" alt="Manhattan" onclick="openLightbox(this)">
 <div class="caption"><strong>Manhattan Plot.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/PNGs/volcano_plot_dmps.png" alt="Volcano" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/volcano_plot_dmps.png" alt="Volcano" onclick="openLightbox(this)">
 <div class="caption"><strong>Volcano Plot.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/PNGs/dmp_chromosome_distribution.png" alt="Chrom dist" onclick="openLightbox(this)">
+<img src="results/01_methylation/PNGs/dmp_chromosome_distribution.png" alt="Chrom dist" onclick="openLightbox(this)">
 <div class="caption"><strong>Chromosome Distribution.</strong></div>
 </div>
 </div>
@@ -715,11 +715,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/methylation/ChIPseeker/dmp_chipseeker_annotation_bar.png" alt="Bar" onclick="openLightbox(this)">
+<img src="results/01_methylation/ChIPseeker/dmp_chipseeker_annotation_bar.png" alt="Bar" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP Genomic Region Distribution.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/ChIPseeker/dmp_chipseeker_annotation_pie.png" alt="Pie" onclick="openLightbox(this)">
+<img src="results/01_methylation/ChIPseeker/dmp_chipseeker_annotation_pie.png" alt="Pie" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP Annotation Pie Chart.</strong></div>
 </div>
 </div>
@@ -735,11 +735,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/methylation/Enrichment/dmp_go_all_dotplot.png" alt="GO" onclick="openLightbox(this)">
+<img src="results/01_methylation/Enrichment/dmp_go_all_dotplot.png" alt="GO" onclick="openLightbox(this)">
 <div class="caption"><strong>GO Enrichment.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/Enrichment/dmp_kegg_dotplot.png" alt="KEGG" onclick="openLightbox(this)">
+<img src="results/01_methylation/Enrichment/dmp_kegg_dotplot.png" alt="KEGG" onclick="openLightbox(this)">
 <div class="caption"><strong>KEGG Enrichment.</strong></div>
 </div>
 </div>
@@ -754,11 +754,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/methylation/TE_Analysis/barplot_DMP_count_by_TE_class.png" alt="DMP by TE" onclick="openLightbox(this)">
+<img src="results/01_methylation/TE_Analysis/barplot_DMP_count_by_TE_class.png" alt="DMP by TE" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP Counts by TE Class.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/methylation/TE_Analysis/cohens_d_by_TE_class.png" alt="Cohen's d" onclick="openLightbox(this)">
+<img src="results/01_methylation/TE_Analysis/cohens_d_by_TE_class.png" alt="Cohen's d" onclick="openLightbox(this)">
 <div class="caption"><strong>Cohen's d by TE Class.</strong> All &lt; 0.01.</div>
 </div>
 </div>
@@ -791,11 +791,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/rnaseq/Part1_QC/plots/PCA_by_condition.png" alt="PCA condition" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part1_QC/plots/PCA_by_condition.png" alt="PCA condition" onclick="openLightbox(this)">
 <div class="caption"><strong>PCA by Condition.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/rnaseq/Part1_QC/plots/PCA_by_experiment.png" alt="PCA experiment" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part1_QC/plots/PCA_by_experiment.png" alt="PCA experiment" onclick="openLightbox(this)">
 <div class="caption"><strong>PCA by Experiment.</strong> Batch effects visible.</div>
 </div>
 </div>
@@ -811,7 +811,7 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/rnaseq/Part1b_BatchCorrection/plots/PCA_corrected_by_condition.png" alt="PCA corrected" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part1b_BatchCorrection/plots/PCA_corrected_by_condition.png" alt="PCA corrected" onclick="openLightbox(this)">
 <div class="caption"><strong>PCA After Batch Correction.</strong> Samples cluster by biology, not batch.</div>
 </div>
 </div>
@@ -821,7 +821,7 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h2>Stage 3: Differential Expression</h2>
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/rnaseq/Part2_DEGs/plots/all_DEGs_heatmap.png" alt="DEG heatmap" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part2_DEGs/plots/all_DEGs_heatmap.png" alt="DEG heatmap" onclick="openLightbox(this)">
 <div class="caption"><strong>DEG Heatmap.</strong> Expression patterns across conditions.</div>
 </div>
 </div>
@@ -831,11 +831,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h2>Stage 4: Expression Clustering</h2>
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/rnaseq/Part3_Hierarchical/plots/hierarchical_full.png" alt="Hier clustering" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part3_Hierarchical/plots/hierarchical_full.png" alt="Hier clustering" onclick="openLightbox(this)">
 <div class="caption"><strong>Hierarchical Clustering.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/rnaseq/Part4_Kmeans/plots/kmeans_centroids.png" alt="K-means" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part4_Kmeans/plots/kmeans_centroids.png" alt="K-means" onclick="openLightbox(this)">
 <div class="caption"><strong>K-means Centroids.</strong></div>
 </div>
 </div>
@@ -856,15 +856,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/rnaseq/Part5_WGCNA/plots/04_soft_thresholding_power.png" alt="Power" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part5_WGCNA/plots/04_soft_thresholding_power.png" alt="Power" onclick="openLightbox(this)">
 <div class="caption"><strong>Soft Thresholding Power.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/rnaseq/Part5_WGCNA/plots/06_module_eigengenes_heatmap.png" alt="Eigengenes" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part5_WGCNA/plots/06_module_eigengenes_heatmap.png" alt="Eigengenes" onclick="openLightbox(this)">
 <div class="caption"><strong>Module Eigengene Heatmap.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/rnaseq/Part5_WGCNA/plots/07_module_trait_relationships.png" alt="Trait" onclick="openLightbox(this)">
+<img src="results/02_rnaseq/Part5_WGCNA/plots/07_module_trait_relationships.png" alt="Trait" onclick="openLightbox(this)">
 <div class="caption"><strong>Module-Trait Relationships.</strong></div>
 </div>
 </div>
@@ -872,10 +872,10 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <details>
 <summary>View module enrichment plots</summary>
 <div class="fig-gallery">
-<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/26_KEGG_enrichment_blue.png" onclick="openLightbox(this)"><div class="caption"><strong>Blue Module.</strong></div></div>
-<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/30_BP_enrichment_yellow.png" onclick="openLightbox(this)"><div class="caption"><strong>Yellow Module.</strong></div></div>
-<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/27_BP_enrichment_turquoise.png" onclick="openLightbox(this)"><div class="caption"><strong>Turquoise Module.</strong></div></div>
-<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/24_KEGG_enrichment_brown.png" onclick="openLightbox(this)"><div class="caption"><strong>Brown Module.</strong></div></div>
+<div class="fig-card"><img src="results/02_rnaseq/Part5_WGCNA/plots/26_KEGG_enrichment_blue.png" onclick="openLightbox(this)"><div class="caption"><strong>Blue Module.</strong></div></div>
+<div class="fig-card"><img src="results/02_rnaseq/Part5_WGCNA/plots/30_BP_enrichment_yellow.png" onclick="openLightbox(this)"><div class="caption"><strong>Yellow Module.</strong></div></div>
+<div class="fig-card"><img src="results/02_rnaseq/Part5_WGCNA/plots/27_BP_enrichment_turquoise.png" onclick="openLightbox(this)"><div class="caption"><strong>Turquoise Module.</strong></div></div>
+<div class="fig-card"><img src="results/02_rnaseq/Part5_WGCNA/plots/24_KEGG_enrichment_brown.png" onclick="openLightbox(this)"><div class="caption"><strong>Brown Module.</strong></div></div>
 </div>
 </details>
 </section>
@@ -910,15 +910,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <div class="caption"><strong>All Genes.</strong> &rho;=-0.005, p=0.80.</div>
 </div>
 <div class="fig-card">
-<img src="results/meth_expr_predictors/plots/fig_D4_global_vs_module_correlations.png" alt="Global vs module" onclick="openLightbox(this)">
+<img src="results/10_meth_expr_predictors/plots/fig_D4_global_vs_module_correlations.png" alt="Global vs module" onclick="openLightbox(this)">
 <div class="caption"><strong>Global vs Module.</strong> Module-level correlations are strong.</div>
 </div>
 <div class="fig-card">
-<img src="results/meth_expr_predictors/plots/fig_D1_meth_expr_correlation_heatmap.png" alt="Heatmap" onclick="openLightbox(this)">
+<img src="results/10_meth_expr_predictors/plots/fig_D1_meth_expr_correlation_heatmap.png" alt="Heatmap" onclick="openLightbox(this)">
 <div class="caption"><strong>Module x Region Correlation Heatmap.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/meth_expr_predictors/plots/fig_D5_top_predictors_bubble.png" alt="Bubble" onclick="openLightbox(this)">
+<img src="results/10_meth_expr_predictors/plots/fig_D5_top_predictors_bubble.png" alt="Bubble" onclick="openLightbox(this)">
 <div class="caption"><strong>Top Predictors.</strong></div>
 </div>
 </div>
@@ -957,15 +957,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/intergenic_regulation/plots/fig_H02_dmp_distance_distribution.png" alt="Distance" onclick="openLightbox(this)">
+<img src="results/13_intergenic_regulation/plots/fig_H02_dmp_distance_distribution.png" alt="Distance" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP Distance Distribution.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/intergenic_regulation/plots/fig_H04_distal_vs_genic_volcano.png" alt="Volcano" onclick="openLightbox(this)">
+<img src="results/13_intergenic_regulation/plots/fig_H04_distal_vs_genic_volcano.png" alt="Volcano" onclick="openLightbox(this)">
 <div class="caption"><strong>Distal vs Genic.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/intergenic_regulation/plots/fig_H05_top_intergenic_candidates.png" alt="Candidates" onclick="openLightbox(this)">
+<img src="results/13_intergenic_regulation/plots/fig_H05_top_intergenic_candidates.png" alt="Candidates" onclick="openLightbox(this)">
 <div class="caption"><strong>Top Intergenic Candidates.</strong></div>
 </div>
 </div>
@@ -997,11 +997,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/entropy_novel/figures/M01_module_entropy.png" alt="Entropy" onclick="openLightbox(this)">
+<img src="results/16_entropy_novel/figures/M01_module_entropy.png" alt="Entropy" onclick="openLightbox(this)">
 <div class="caption"><strong>Entropy Landscape.</strong> H/Hmax = 0.80.</div>
 </div>
 <div class="fig-card">
-<img src="results/entropy_novel/figures/M03_region_asymmetry.png" alt="Asymmetry" onclick="openLightbox(this)">
+<img src="results/16_entropy_novel/figures/M03_region_asymmetry.png" alt="Asymmetry" onclick="openLightbox(this)">
 <div class="caption"><strong>Module Asymmetry.</strong></div>
 </div>
 </div>
@@ -1024,7 +1024,7 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/machine_learning/figures/N03_model_comparison.png" alt="Models" onclick="openLightbox(this)">
+<img src="results/17_machine_learning/figures/N03_model_comparison.png" alt="Models" onclick="openLightbox(this)">
 <div class="caption"><strong>Model Comparison.</strong> All fail to predict DE.</div>
 </div>
 </div>
@@ -1048,11 +1048,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/te_age_methylation/figures/O01_te_age_landscape.png" alt="TE age" onclick="openLightbox(this)">
+<img src="results/18_te_age_methylation/figures/O01_te_age_landscape.png" alt="TE age" onclick="openLightbox(this)">
 <div class="caption"><strong>TE Age Landscape.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/te_age_methylation/figures/O03_dmp_by_te_class.png" alt="DMP by TE" onclick="openLightbox(this)">
+<img src="results/18_te_age_methylation/figures/O03_dmp_by_te_class.png" alt="DMP by TE" onclick="openLightbox(this)">
 <div class="caption"><strong>DMP by TE Class.</strong></div>
 </div>
 </div>
@@ -1062,15 +1062,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h2>DMR Spatial Analysis</h2>
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/dmr_spatial/figures/J01_dmr_size_vs_cpg.png" alt="DMR size" onclick="openLightbox(this)">
+<img src="results/08_dmr_spatial/figures/J01_dmr_size_vs_cpg.png" alt="DMR size" onclick="openLightbox(this)">
 <div class="caption"><strong>DMR Size Distribution.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/dmr_spatial/figures/J02_dmr_region_distribution.png" alt="DMR region" onclick="openLightbox(this)">
+<img src="results/08_dmr_spatial/figures/J02_dmr_region_distribution.png" alt="DMR region" onclick="openLightbox(this)">
 <div class="caption"><strong>DMR Region Distribution.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/dmr_spatial/figures/J06_dmr_meth_vs_expression.png" alt="DMR meth expr" onclick="openLightbox(this)">
+<img src="results/08_dmr_spatial/figures/J06_dmr_meth_vs_expression.png" alt="DMR meth expr" onclick="openLightbox(this)">
 <div class="caption"><strong>DMR Methylation vs Expression.</strong></div>
 </div>
 </div>
@@ -1080,11 +1080,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h2>Promoter CpG Classification</h2>
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/promoter/02_plots_png/05_methylation_by_class_cov5.png" alt="By class" onclick="openLightbox(this)">
+<img src="results/04_promoter/02_plots_png/05_methylation_by_class_cov5.png" alt="By class" onclick="openLightbox(this)">
 <div class="caption"><strong>Methylation by Promoter Class.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/promoter/02_plots_png/08_methylation_vs_expression_by_class.png" alt="Meth expr class" onclick="openLightbox(this)">
+<img src="results/04_promoter/02_plots_png/08_methylation_vs_expression_by_class.png" alt="Meth expr class" onclick="openLightbox(this)">
 <div class="caption"><strong>Meth vs Expr by Promoter Class.</strong></div>
 </div>
 </div>
@@ -1107,11 +1107,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/threshold_sensitivity/plots/fig_B1_module_DMP_enrichment_threshold_tile.png" alt="Tile" onclick="openLightbox(this)">
+<img src="results/06_threshold_sensitivity/plots/fig_B1_module_DMP_enrichment_threshold_tile.png" alt="Tile" onclick="openLightbox(this)">
 <div class="caption"><strong>Module Enrichment Across Thresholds.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/threshold_sensitivity/plots/fig_C1_module_enrichment_scenarios.png" alt="Scenarios" onclick="openLightbox(this)">
+<img src="results/06_threshold_sensitivity/plots/fig_C1_module_enrichment_scenarios.png" alt="Scenarios" onclick="openLightbox(this)">
 <div class="caption"><strong>Scenario Comparison.</strong></div>
 </div>
 </div>
@@ -1126,15 +1126,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/deep_analysis/plots/fig_F01_developmental_gene_dmp_enrichment.png" alt="Dev enrichment" onclick="openLightbox(this)">
+<img src="results/07_deep_analysis/plots/fig_F01_developmental_gene_dmp_enrichment.png" alt="Dev enrichment" onclick="openLightbox(this)">
 <div class="caption"><strong>Developmental Gene Enrichment.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/deep_analysis/plots/fig_F04_methylation_dosage_response.png" alt="Dosage" onclick="openLightbox(this)">
+<img src="results/07_deep_analysis/plots/fig_F04_methylation_dosage_response.png" alt="Dosage" onclick="openLightbox(this)">
 <div class="caption"><strong>Dosage Response.</strong> Flat.</div>
 </div>
 <div class="fig-card">
-<img src="results/deep_analysis/plots/fig_F12_module_methylation_direction.png" alt="Direction" onclick="openLightbox(this)">
+<img src="results/07_deep_analysis/plots/fig_F12_module_methylation_direction.png" alt="Direction" onclick="openLightbox(this)">
 <div class="caption"><strong>Module Methylation Direction.</strong> 10/12 hypo-dominant.</div>
 </div>
 </div>
@@ -1149,11 +1149,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/morphogenesis_enrichment/figures/I01_category_dmp_enrichment.png" alt="Category" onclick="openLightbox(this)">
+<img src="results/14_morphogenesis_enrichment/figures/I01_category_dmp_enrichment.png" alt="Category" onclick="openLightbox(this)">
 <div class="caption"><strong>Category DMP Enrichment.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/morphogenesis_enrichment/figures/I04_category_module_heatmap.png" alt="Category module" onclick="openLightbox(this)">
+<img src="results/14_morphogenesis_enrichment/figures/I04_category_module_heatmap.png" alt="Category module" onclick="openLightbox(this)">
 <div class="caption"><strong>Category x Module Crosstab.</strong></div>
 </div>
 </div>
@@ -1163,16 +1163,16 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h2>DMR Deep Analysis</h2>
 
 <div class="card card-err">
-<p><strong>0/60 large DMRs associate with DE genes.</strong> Cytoskeleton enriched (OR=2.30, padj=1.1e-6). TFs enriched for DMRs (OR=1.58, padj=0.004) but depleted for DMPs -- different methylation modalities target different gene classes.</p>
+<p><strong>0/60 large DMRs associate with DE genes.</strong> Cytoskeleton enriched (OR=2.30, padj=1.1e-6). TFs enriched for both DMRs (OR=1.58, padj=0.004) and DMPs (OR=1.607, padj=4.32e-13), but 0/6 DE TFs carry methylation changes.</p>
 </div>
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/dmr_deep_analysis/figures/L01_dmr_category_enrichment.png" alt="DMR category" onclick="openLightbox(this)">
+<img src="results/09_dmr_deep_analysis/figures/L01_dmr_category_enrichment.png" alt="DMR category" onclick="openLightbox(this)">
 <div class="caption"><strong>DMR Category Enrichment.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/dmr_deep_analysis/figures/L02_module_tf_dmp_dmr_rates.png" alt="TF rates" onclick="openLightbox(this)">
+<img src="results/09_dmr_deep_analysis/figures/L02_module_tf_dmp_dmr_rates.png" alt="TF rates" onclick="openLightbox(this)">
 <div class="caption"><strong>Module TF DMP/DMR Rates.</strong></div>
 </div>
 </div>
@@ -1193,11 +1193,11 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/synthesis/figures/K04_regeneration_model.png" alt="Model" onclick="openLightbox(this)">
+<img src="results/15_synthesis/figures/K04_regeneration_model.png" alt="Model" onclick="openLightbox(this)">
 <div class="caption"><strong>Topology-Marking Model.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/synthesis/figures/K03_module_evidence_heatmap.png" alt="Evidence" onclick="openLightbox(this)">
+<img src="results/15_synthesis/figures/K03_module_evidence_heatmap.png" alt="Evidence" onclick="openLightbox(this)">
 <div class="caption"><strong>Module Evidence Heatmap.</strong></div>
 </div>
 </div>
@@ -1382,26 +1382,26 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 
 <h3>Summary / Publication Figures</h3>
 <div class="fig-gallery">
-<div class="fig-card"><img src="results/publication_figures/fig01_module_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 1.</strong> Module DMP enrichment</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig02_category_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 2.</strong> Category enrichment</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig03_hub_methylation_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 3.</strong> Hub methylation</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig04_dmp_genomic_regions.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 4.</strong> DMP regions</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig05_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 5.</strong> Top 30 candidates</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig06_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 6.</strong> Evidence matrix</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig07_four_layer_model.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 7.</strong> Four-layer model</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig08_dmp_dmr_concordance.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 8.</strong> DMP-DMR concordance</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig09_methylation_threshold.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 9.</strong> Threshold</div></div>
-<div class="fig-card"><img src="results/publication_figures/fig10_module_evidence_heatmap.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 10.</strong> Module evidence</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig01_module_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 1.</strong> Module DMP enrichment</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig02_category_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 2.</strong> Category enrichment</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig03_hub_methylation_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 3.</strong> Hub methylation</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig04_dmp_genomic_regions.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 4.</strong> DMP regions</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig05_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 5.</strong> Top 30 candidates</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig06_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 6.</strong> Evidence matrix</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig07_four_layer_model.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 7.</strong> Four-layer model</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig08_dmp_dmr_concordance.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 8.</strong> DMP-DMR concordance</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig09_methylation_threshold.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 9.</strong> Threshold</div></div>
+<div class="fig-card"><img src="results/22_publication_figures/fig10_module_evidence_heatmap.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 10.</strong> Module evidence</div></div>
 </div>
 </section>
 
 <section id="candidates">
 <h1>Candidate Genes for Validation</h1>
 <div class="fig-gallery">
-<div class="fig-card"><img src="results/candidate_genes/plots/fig_E2_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Top 30 Candidates.</strong></div></div>
-<div class="fig-card"><img src="results/candidate_genes/plots/fig_E4_candidates_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Evidence Matrix.</strong></div></div>
-<div class="fig-card"><img src="results/candidate_genes/plots/fig_E1_candidates_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>By Module.</strong></div></div>
-<div class="fig-card"><img src="results/candidate_genes/plots/fig_E3_sulfation_meth_vs_expr.png" onclick="openLightbox(this)"><div class="caption"><strong>Sulfation Genes.</strong></div></div>
+<div class="fig-card"><img src="results/11_candidate_genes/plots/fig_E2_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Top 30 Candidates.</strong></div></div>
+<div class="fig-card"><img src="results/11_candidate_genes/plots/fig_E4_candidates_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Evidence Matrix.</strong></div></div>
+<div class="fig-card"><img src="results/11_candidate_genes/plots/fig_E1_candidates_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>By Module.</strong></div></div>
+<div class="fig-card"><img src="results/11_candidate_genes/plots/fig_E3_sulfation_meth_vs_expr.png" onclick="openLightbox(this)"><div class="caption"><strong>Sulfation Genes.</strong></div></div>
 </div>
 </section>
 
@@ -1409,15 +1409,15 @@ Maximum possible: 1 bit  |  Observed/Max: 0.009%
 <h1>Cross-Species Figures</h1>
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/cross_species/figures/P01_methylation_levels.png" alt="Methylation levels" onclick="openLightbox(this)">
+<img src="results/19_cross_species/figures/P01_methylation_levels.png" alt="Methylation levels" onclick="openLightbox(this)">
 <div class="caption"><strong>CpG Methylation Across Species.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/cross_species/figures/P02_regen_species_heatmap.png" alt="Regen heatmap" onclick="openLightbox(this)">
+<img src="results/19_cross_species/figures/P02_regen_species_heatmap.png" alt="Regen heatmap" onclick="openLightbox(this)">
 <div class="caption"><strong>Regeneration Feature Comparison.</strong></div>
 </div>
 <div class="fig-card">
-<img src="results/cross_species/figures/P03_paradigm_shift.png" alt="Paradigm shift" onclick="openLightbox(this)">
+<img src="results/19_cross_species/figures/P03_paradigm_shift.png" alt="Paradigm shift" onclick="openLightbox(this)">
 <div class="caption"><strong>Paradigm Shift.</strong> Every mammalian assumption rejected.</div>
 </div>
 </div>
@@ -1577,11 +1577,11 @@ HTSeq Counts -> DESeq2 -> Batch -> DEGs -+ |
 
 <div class="fig-gallery">
 <div class="fig-card">
-<img src="results/sox19a_tf_motifs/plots/02_tf_dmp_pie_chart.png" alt="TF pie" onclick="openLightbox(this)">
+<img src="results/21_sox19a_tf_motifs/plots/02_tf_dmp_pie_chart.png" alt="TF pie" onclick="openLightbox(this)">
 <div class="caption"><strong>TF DMP Pie Chart.</strong> ChIPseeker regions for TF genes.</div>
 </div>
 <div class="fig-card">
-<img src="results/sox19a_tf_motifs/plots/03_nontf_dmp_pie_chart.png" alt="NonTF pie" onclick="openLightbox(this)">
+<img src="results/21_sox19a_tf_motifs/plots/03_nontf_dmp_pie_chart.png" alt="NonTF pie" onclick="openLightbox(this)">
 <div class="caption"><strong>Non-TF DMP Pie Chart.</strong> Compare with TFs above.</div>
 </div>
 </div>
@@ -1636,7 +1636,7 @@ HTSeq Counts -> DESeq2 -> Batch -> DEGs -+ |
 <section style="border-top:1px solid var(--border); padding-top:24px; margin-top:32px;">
 <p style="color:var(--text2); font-size:12px;">
 <strong>D. laeve Regeneration Epigenomics Wiki</strong> -- Generated March 2026<br>
-316 figures | 262 data tables | 3 manuscript drafts | 18 analysis scripts<br>
+316 figures | 262 data tables | 2 manuscript drafts | 18 analysis scripts<br>
 Pipeline: Bismark &rarr; DSS &rarr; DESeq2 &rarr; WGCNA &rarr; Information Theory &rarr; ML &rarr; Gviz/Motifs<br>
 <em>This is a living document. New analyses integrated as completed.</em>
 </p>
