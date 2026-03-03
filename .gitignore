@@ -1,0 +1,93 @@
+# ── Results directory (cluster outputs, not tracked) ──
+results/
+
+# ── Papers (PDFs/HTML, not tracked) ──
+papers/*.pdf
+*.html
+!report.html
+
+# ── Large data files (keep on cluster, not in git) ──
+*.rds
+*.RData
+*.rda
+data/
+
+# ── Raw sequencing ──
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.sam
+*.CpG_report.txt.gz
+*.bismark.cov.gz
+*.counts
+*.htseq
+
+# ── Reference genomes & annotations ──
+*.fa
+*.fa.fai
+*.fasta
+*.gff
+*.gff3
+*.gtf
+*.bed
+*.2bit
+
+# ── Database files ──
+protein.enrichment.terms*.txt
+
+# ── DeepTFactor artifacts ──
+cluster/06-tf-prediction/deeptfactor/trained_model/
+cluster/06-tf-prediction/deeptfactor/Dataset/
+__pycache__/
+
+# ── R artifacts ──
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj.user/
+*.Rproj
+Rplots.pdf
+
+# ── IDE & editor ──
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Shell/system dotfiles (WSL artifacts) ──
+.bash_profile
+.bashrc
+.profile
+.zprofile
+.zshrc
+.gitconfig
+.gitmodules
+.ripgreprc
+.mcp.json
+
+# ── Claude Code ──
+.claude/
+
+# ── Bare repo artifacts (WSL symlink noise) ──
+HEAD
+config
+hooks/
+objects/
+refs/
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Temp & cluster logs ──
+*.tmp
+*.bak
+*~
+*.log
+*.out
+*.err
+slurm_*.out
+slurm_*.err

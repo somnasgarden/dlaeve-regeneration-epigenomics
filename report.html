@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D. laeve Regeneration Epigenomics — Multi-Page Wiki</title>
+<style>
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #21262d; --border: #30363d;
+  --text: #e6edf3; --text2: #8b949e; --accent: #58a6ff; --accent2: #3fb950;
+  --warn: #d29922; --err: #f85149; --purple: #bc8cff;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* Layout */
+.sidebar {
+  position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
+  background: var(--bg2); border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 0; z-index: 100; display: flex; flex-direction: column;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.main { margin-left: 260px; padding: 32px 48px; max-width: 1200px; }
+
+/* Sidebar */
+.sidebar .logo { padding: 16px 20px 16px; border-bottom: 1px solid var(--border); }
+.sidebar .logo h1 { font-size: 15px; color: var(--text); line-height: 1.3; }
+.sidebar .logo em { font-size: 12px; color: var(--text2); }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 8px 0; }
+.page-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px; font-size: 13px; font-weight: 600; color: var(--text2);
+  cursor: pointer; text-decoration: none; border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+.page-link:hover { color: var(--text); background: var(--bg3); }
+.page-link.active { color: var(--accent); border-left-color: var(--accent); background: var(--bg3); }
+.page-link .icon { font-size: 16px; width: 20px; text-align: center; }
+.sub-links { display: none; }
+.page-link.active + .sub-links { display: block; }
+.sub-link {
+  display: block; padding: 4px 20px 4px 48px; font-size: 12px;
+  color: var(--text2); text-decoration: none; transition: all 0.15s;
+}
+.sub-link:hover { color: var(--accent); background: var(--bg3); }
+.sidebar-sep { height: 1px; background: var(--border); margin: 8px 16px; }
+
+/* Page system */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Content */
+section { margin-bottom: 48px; padding-top: 16px; }
+h1 { font-size: 28px; margin-bottom: 8px; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 12px; }
+h2 { font-size: 22px; margin: 28px 0 12px; color: var(--accent); }
+h3 { font-size: 17px; margin: 20px 0 8px; color: var(--purple); }
+h4 { font-size: 15px; margin: 16px 0 6px; color: var(--warn); }
+p { margin-bottom: 12px; color: var(--text); }
+.subtitle { color: var(--text2); font-size: 15px; margin-bottom: 24px; }
+ul, ol { margin-left: 20px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+
+/* Cards */
+.card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 20px; margin: 16px 0;
+}
+.card-accent { border-left: 3px solid var(--accent); }
+.card-green { border-left: 3px solid var(--accent2); }
+.card-warn { border-left: 3px solid var(--warn); }
+.card-err { border-left: 3px solid var(--err); }
+.card-purple { border-left: 3px solid var(--purple); }
+
+/* Stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 16px 0; }
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px; text-align: center;
+}
+.stat-card .number { font-size: 28px; font-weight: 700; color: var(--accent); }
+.stat-card .label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+th { background: var(--bg3); color: var(--accent); padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); }
+td { padding: 6px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+tr:hover td { background: var(--bg2); }
+
+/* Figure gallery */
+.fig-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px; margin: 16px 0; }
+.fig-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; transition: transform 0.2s;
+}
+.fig-card:hover { transform: translateY(-2px); }
+.fig-card img { width: 100%; height: auto; display: block; cursor: pointer; }
+.fig-card .caption { padding: 10px; font-size: 12px; color: var(--text2); }
+.fig-card .caption strong { color: var(--text); }
+
+/* Code / formula */
+code { font-family: var(--mono); background: var(--bg3); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--accent2); }
+pre { background: var(--bg3); padding: 16px; border-radius: 6px; overflow-x: auto; margin: 12px 0; font-family: var(--mono); font-size: 13px; line-height: 1.5; color: var(--text); }
+
+/* Concept boxes */
+.concept { background: var(--bg2); border: 1px solid var(--accent); border-radius: 8px; padding: 20px; margin: 20px 0; }
+.concept h4 { color: var(--accent); margin-top: 0; }
+.concept-stat { background: var(--bg2); border: 1px solid var(--accent2); border-radius: 8px; padding: 20px; margin: 20px 0; }
+.concept-stat h4 { color: var(--accent2); margin-top: 0; }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; margin: 2px; }
+.tag-blue { background: #1f3a5f; color: var(--accent); }
+.tag-green { background: #1a3a2a; color: var(--accent2); }
+.tag-yellow { background: #3a3520; color: var(--warn); }
+.tag-red { background: #3a1a1a; color: var(--err); }
+.tag-purple { background: #2a1a3a; color: var(--purple); }
+
+/* Lightbox */
+.lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; cursor:pointer; }
+.lightbox.active { display:flex; }
+.lightbox img { max-width:90%; max-height:90%; border-radius:8px; }
+
+/* Method justification */
+.method-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+.method-box .why, .method-box .who { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.method-box .why h4 { color: var(--accent); }
+.method-box .who h4 { color: var(--purple); }
+
+/* Collapsible */
+details { margin: 12px 0; }
+details summary { cursor: pointer; font-weight: 600; color: var(--accent); padding: 8px 0; }
+details[open] summary { margin-bottom: 8px; }
+
+/* Pipeline flow */
+.pipeline-flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; }
+.pipeline-step {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 12px; font-size: 12px; color: var(--text);
+}
+.pipeline-arrow { color: var(--text2); font-size: 16px; }
+
+/* Breadcrumb / page header */
+.page-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.page-header .page-num {
+  background: var(--accent); color: var(--bg); font-size: 12px; font-weight: 700;
+  padding: 2px 10px; border-radius: 12px;
+}
+.page-header .page-title { font-size: 20px; font-weight: 700; color: var(--text); }
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+}
+.page-nav a {
+  color: var(--accent); text-decoration: none; font-size: 14px; cursor: pointer;
+  padding: 8px 16px; border: 1px solid var(--border); border-radius: 6px;
+  transition: all 0.15s;
+}
+.page-nav a:hover { background: var(--bg3); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+  .fig-gallery { grid-template-columns: 1fr; }
+  .method-box { grid-template-columns: 1fr; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+  <div class="logo">
+    <h1>D. laeve Epigenomics</h1>
+    <em>Regeneration Wiki</em>
+  </div>
+  <div class="sidebar-nav">
+    <a class="page-link active" data-page="home"><span class="icon">&#9776;</span> Home</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#overview">Project Summary</a>
+      <a class="sub-link" href="#design">Experimental Design</a>
+      <a class="sub-link" href="#pipeline">Pipeline Overview</a>
+      <a class="sub-link" href="#key-numbers">Key Numbers</a>
+    </div>
+
+    <a class="page-link" data-page="findings"><span class="icon">&#9733;</span> Key Findings</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#mi-zero">MI = 0</a>
+      <a class="sub-link" href="#intergenic">Intergenic Regulation</a>
+      <a class="sub-link" href="#binary-switch">Binary Switch</a>
+      <a class="sub-link" href="#hub-paradox">Hub Paradox</a>
+      <a class="sub-link" href="#four-layer">Four-Layer Model</a>
+      <a class="sub-link" href="#icp">91.6% ICP</a>
+      <a class="sub-link" href="#tf-protection">TF Protection</a>
+    </div>
+
+    <a class="page-link" data-page="methylation"><span class="icon">&#9679;</span> Methylation</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#meth-qc">Quality Control</a>
+      <a class="sub-link" href="#meth-dmp">DMPs &amp; DMRs</a>
+      <a class="sub-link" href="#meth-annot">Annotation</a>
+      <a class="sub-link" href="#meth-enrich">Enrichment</a>
+      <a class="sub-link" href="#meth-te">TE Methylation</a>
+    </div>
+
+    <a class="page-link" data-page="rnaseq"><span class="icon">&#9670;</span> RNA-seq</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#rnaseq-qc">Normalization</a>
+      <a class="sub-link" href="#rnaseq-batch">Batch Correction</a>
+      <a class="sub-link" href="#rnaseq-deg">DE Analysis</a>
+      <a class="sub-link" href="#rnaseq-cluster">Clustering</a>
+      <a class="sub-link" href="#rnaseq-wgcna">WGCNA</a>
+    </div>
+
+    <a class="page-link" data-page="integration"><span class="icon">&#8644;</span> Integration</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#int-corr">Meth vs Expression</a>
+      <a class="sub-link" href="#int-module">Module Enrichment</a>
+      <a class="sub-link" href="#int-intergenic">Intergenic Deep Dive</a>
+    </div>
+
+    <a class="page-link" data-page="advanced"><span class="icon">&#9881;</span> Advanced</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#entropy">Entropy</a>
+      <a class="sub-link" href="#ml">Machine Learning</a>
+      <a class="sub-link" href="#te-age">TE Age</a>
+      <a class="sub-link" href="#dmr-spatial">DMR Spatial</a>
+      <a class="sub-link" href="#promoter">Promoter Class</a>
+      <a class="sub-link" href="#threshold-sensitivity">Threshold</a>
+      <a class="sub-link" href="#deep-analysis">Deep Analysis</a>
+      <a class="sub-link" href="#morphogenesis">Morphogenesis</a>
+      <a class="sub-link" href="#dmr-deep">DMR Deep</a>
+      <a class="sub-link" href="#synthesis">Synthesis</a>
+    </div>
+
+    <a class="page-link" data-page="context"><span class="icon">&#128218;</span> Context</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#methods">Methods</a>
+      <a class="sub-link" href="#cross-species">Cross-Species</a>
+      <a class="sub-link" href="#landscape-2026">2026 Literature</a>
+      <a class="sub-link" href="#whats-missing">What's Missing</a>
+    </div>
+
+    <a class="page-link" data-page="figures"><span class="icon">&#128444;</span> Figures</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#gallery">Publication Figures</a>
+      <a class="sub-link" href="#candidates">Candidates</a>
+      <a class="sub-link" href="#cross-species-figs">Cross-Species</a>
+    </div>
+
+    <a class="page-link" data-page="technical"><span class="icon">&#128295;</span> Technical</a>
+    <div class="sub-links">
+      <a class="sub-link" href="#formulas">Formulas</a>
+      <a class="sub-link" href="#code-flow">Pipeline Code</a>
+      <a class="sub-link" href="#most-probable">Sox19a</a>
+      <a class="sub-link" href="#wgcna-justify">WGCNA Choice</a>
+      <a class="sub-link" href="#references">References</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="Enlarged figure">
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+<!-- ================================================================ -->
+<!-- PAGE: HOME -->
+<!-- ================================================================ -->
+<div class="page active" id="page-home">
+
+<div class="page-header">
+  <span class="page-num">1 / 9</span>
+  <span class="page-title">Project Overview</span>
+</div>
+
+<section id="overview">
+<h1>Epigenomic Regulation of Tail Regeneration in <em>Deroceras laeve</em></h1>
+<p class="subtitle">Whole-genome bisulfite sequencing + RNA-seq + gene regulatory network integration</p>
+
+<div class="card card-accent">
+<p><strong>Central question:</strong> How does DNA methylation regulate gene expression during tissue regeneration in an invertebrate?</p>
+<p><strong>Central answer:</strong> It doesn't regulate expression directly. Instead, methylation marks network topology -- it targets genes based on their position in co-expression networks, not to control their transcriptional output. The classical "hypermethylation = silencing" rule is entirely absent.</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">18,754</div><div class="label">Differentially Methylated Positions</div></div>
+  <div class="stat-card"><div class="number">1,424</div><div class="label">Differentially Methylated Regions</div></div>
+  <div class="stat-card"><div class="number">12</div><div class="label">WGCNA Co-expression Modules</div></div>
+  <div class="stat-card"><div class="number">4,824</div><div class="label">Predicted Transcription Factors</div></div>
+  <div class="stat-card"><div class="number">73,425</div><div class="label">Proteins Analyzed</div></div>
+  <div class="stat-card"><div class="number">3.4M</div><div class="label">Transposable Elements</div></div>
+</div>
+
+<h3>The Organism</h3>
+<p><em>Deroceras laeve</em> (gray field slug) is a gastropod mollusk -- a non-model invertebrate that can regenerate its tail after amputation. This is only the <strong>second gastropod whole methylome ever published</strong> and the <strong>first study of DNA methylation dynamics during regeneration in any invertebrate</strong>.</p>
+</section>
+
+<section id="design">
+<h2>Experimental Design</h2>
+<table>
+<tr><th>Data Type</th><th>Samples</th><th>Comparison</th><th>Method</th></tr>
+<tr><td>WGBS (methylation)</td><td>C1, C2 vs A1, A2</td><td>Control vs Amputated tails</td><td>Bismark &rarr; DSS</td></tr>
+<tr><td>RNA-seq (tail)</td><td>C1S1-C4S4 vs T2S6-T4S8</td><td>Control vs Amputated</td><td>DESeq2</td></tr>
+<tr><td>RNA-seq (multi-tissue)</td><td>6 tissues x 4 conditions</td><td>Meta-analysis for WGCNA</td><td>WGCNA signed network</td></tr>
+</table>
+<p><strong>Tissues:</strong> tail, eye, body wall, head, juvenile, ovotestis<br>
+<strong>Conditions:</strong> control, amputated, irradiated, fungicide<br>
+<strong>Note:</strong> T1S5 was removed as an outlier during WGCNA analysis.</p>
+</section>
+
+<section id="pipeline">
+<h2>Analysis Pipeline</h2>
+<div class="pipeline-flow">
+  <div class="pipeline-step">Bismark CpG Reports</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">BSseq QC</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">DSS DMPs/DMRs</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">ChIPseeker Annotation</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">GO/KEGG Enrichment</div>
+</div>
+<div class="pipeline-flow">
+  <div class="pipeline-step">HTSeq Counts</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">DESeq2 Normalization</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">Batch Correction</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">DEGs</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">WGCNA Modules</div>
+</div>
+<div class="pipeline-flow">
+  <div class="pipeline-step">DMPs + DEGs + Modules</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">Integration</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">Entropy Analysis</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">ML Prediction</div><span class="pipeline-arrow">&rarr;</span>
+  <div class="pipeline-step">Topology-Marking Model</div>
+</div>
+</section>
+
+<section id="key-numbers">
+<h2>Key Numbers at a Glance</h2>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr>
+<tr><td>DMPs detected</td><td>18,754</td><td>Widespread methylation response to amputation</td></tr>
+<tr><td>DMRs detected</td><td>1,424</td><td>Coordinated regional methylation changes</td></tr>
+<tr><td>Intergenic DMPs</td><td>~63%</td><td>Most methylation changes are NOT at promoters</td></tr>
+<tr><td>MI (meth dir &rarr; expr dir)</td><td>0.00009 bits (p=0.55)</td><td>Zero predictive relationship</td></tr>
+<tr><td>Global &rho; (meth vs expr)</td><td>-0.005 (p=0.80)</td><td>No genome-wide correlation</td></tr>
+<tr><td>Best within-module |r|</td><td>0.81</td><td>Strong module-specific correlations exist</td></tr>
+<tr><td>Hub kME vs methylation &rho;</td><td>+0.176 (p=0.007)</td><td>More connected = more methylated (paradox)</td></tr>
+<tr><td>ICP promoters</td><td>91.6%</td><td>CpG island model structurally inapplicable</td></tr>
+<tr><td>Cochran-Armitage z</td><td>1.009 (p=0.31)</td><td>No dose-response &rarr; binary switch</td></tr>
+<tr><td>Hox genes with DMPs</td><td>0/27</td><td>Master regulators are protected</td></tr>
+<tr><td>TF DMP depletion OR</td><td>0.77 (p=5.87e-5)</td><td>Transcription factors actively protected</td></tr>
+<tr><td>DMP clustering rate</td><td>73x expected</td><td>DMPs form coherent regulatory domains</td></tr>
+</table>
+</section>
+
+<div class="page-nav">
+  <span></span>
+  <a onclick="goToPage('findings')">Key Findings &rarr;</a>
+</div>
+</div><!-- end page-home -->
+
+<!-- ================================================================ -->
+<!-- PAGE: KEY FINDINGS -->
+<!-- ================================================================ -->
+<div class="page" id="page-findings">
+
+<div class="page-header">
+  <span class="page-num">2 / 9</span>
+  <span class="page-title">Key Findings</span>
+</div>
+
+<section id="mi-zero">
+<h1>Finding 1: MI = 0 -- Methylation Direction Does NOT Predict Expression Direction</h1>
+
+<div class="card card-err">
+<p><strong>Result:</strong> Mutual information between methylation direction (hyper/hypo) and expression direction (up/down) is <strong>MI = 0.00009 bits</strong> (p = 0.55). The classical "hypermethylation = gene silencing" rule is <strong>entirely absent</strong> genome-wide.</p>
+</div>
+
+<div class="concept">
+<h4>What is Mutual Information?</h4>
+<p>MI measures how much knowing one variable reduces uncertainty about another. If methylation direction predicted expression direction, MI would be high. <strong>We found MI = 0.00009 bits</strong> -- essentially zero. Knowing whether a gene is hypermethylated tells you <em>absolutely nothing</em> about whether it is up- or down-regulated.</p>
+</div>
+
+<div class="concept-stat">
+<h4>Statistical Details</h4>
+<pre>
+MI(X; Y) = &sum;&sum; p(x,y) x log2[ p(x,y) / (p(x) x p(y)) ]
+
+Our contingency table:
+                Up-regulated    Down-regulated
+Hypermethylated    ~25%            ~25%
+Hypomethylated     ~25%            ~25%
+
+MI = 0.00009 bits, p = 0.55 (10,000 permutations)
+Maximum possible: 1 bit  |  Observed/Max: 0.009%
+</pre>
+</div>
+
+<div class="card card-purple">
+<h4>Why This Matters</h4>
+<p>The "methylation = silencing" model has been the default assumption for decades. Our finding means:</p>
+<ol>
+<li><strong>Hypermethylated genes are equally likely to go UP or DOWN</strong></li>
+<li><strong>The classical model is entirely absent</strong> in this system</li>
+<li><strong>Methylation is doing something else</strong> -- marking network topology, not controlling expression</li>
+<li><strong>This is not noise</strong> -- methylation targeting is highly non-random (entropy H/Hmax = 0.80, clustering at 73x expected)</li>
+</ol>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/entropy_novel/figures/fig03_mutual_information_meth_expr.png" alt="MI analysis" onclick="openLightbox(this)">
+<div class="caption"><strong>MI Analysis.</strong> MI = 0.00009 bits (p=0.55), confirming complete statistical independence.</div>
+</div>
+<div class="fig-card">
+<img src="figures/gene-level/fig04_hyper_hypo_up_down_quadrant_density.png" alt="Quadrant density" onclick="openLightbox(this)">
+<div class="caption"><strong>Quadrant Density.</strong> Genes distribute uniformly across all four quadrants.</div>
+</div>
+</div>
+</section>
+
+<section id="intergenic">
+<h1>Finding 2: Intergenic Methylation Is the Primary Regulatory Mechanism</h1>
+
+<div class="card card-accent">
+<p><strong>63% of DMPs fall in intergenic and intronic regions</strong> -- NOT at promoters. DMPs cluster at 73x the expected rate within 1 kb, forming coherent regulatory domains.</p>
+</div>
+
+<p>In mammals, methylation is a promoter story. In <em>D. laeve</em>, this model is <strong>structurally inapplicable</strong>: 91.6% ICP promoters, only ~12% of DMPs at promoters, intergenic DMPs show the strongest expression correlations.</p>
+
+<div class="card card-green">
+<p>Intergenic methylation changes likely mark <strong>distal regulatory elements</strong>: enhancers, silencers, and insulators. Supported by MethNet (Nature Communications, 2024), H3K4me3 at intergenic regions (Genes & Development, 2025), and enhancer methylation review (IJC, 2026).</p>
+</div>
+
+<table>
+<tr><th>Evidence</th><th>Result</th><th>Interpretation</th></tr>
+<tr><td>DMP distribution</td><td>63% intergenic/intronic</td><td>Majority of changes are distal</td></tr>
+<tr><td>DMP clustering</td><td>73x expected within 1 kb</td><td>Form regulatory domains</td></tr>
+<tr><td>Promoter DMPs vs expr</td><td>Weak/no correlation</td><td>Promoter methylation doesn't drive expression</td></tr>
+<tr><td>Intergenic DMPs vs expr</td><td>Module-specific |r| up to 0.81</td><td>Distal changes strongly affect expression</td></tr>
+<tr><td>Sox19a case study</td><td>Intergenic hypermeth + UP</td><td>Enhancer/silencer methylation can activate genes</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="figures/gene-level/fig02_methylation_vs_expression_by_genomic_region.png" alt="By region" onclick="openLightbox(this)">
+<div class="caption"><strong>Methylation vs Expression by Region.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/intergenic_regulation/plots/fig_H01_sox19a_landscape.png" alt="Sox19a" onclick="openLightbox(this)">
+<div class="caption"><strong>Sox19a Intergenic Regulation.</strong> Hypermethylation with INCREASED expression.</div>
+</div>
+</div>
+</section>
+
+<section id="binary-switch">
+<h1>Finding 3: Methylation Is a Binary Switch, Not a Rheostat</h1>
+
+<div class="card card-warn">
+<p><strong>No dose-response relationship.</strong> Cochran-Armitage: z = 1.009, p = 0.31. Whether a gene has 1 DMP at 10% or 50 DMPs at 60%, the probability of being DE is the same.</p>
+</div>
+
+<div class="concept">
+<h4>Binary Switch vs Rheostat</h4>
+<p>A <strong>rheostat</strong> = more methylation, more effect. A <strong>binary switch</strong> = presence matters, amount doesn't. Our data shows binary switch: methylation flags genes for network-level regulation, but effect depends on network context, not methylation magnitude.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/entropy_novel/figures/M02_binary_switch.png" alt="Binary switch" onclick="openLightbox(this)">
+<div class="caption"><strong>Binary Switch.</strong> DE rate flat across methylation bins (p=0.31).</div>
+</div>
+<div class="fig-card">
+<img src="results/machine_learning/figures/N01_ml_dosage_models.png" alt="ML dosage" onclick="openLightbox(this)">
+<div class="caption"><strong>ML Dosage Models.</strong> Neither linear nor quadratic models improve prediction.</div>
+</div>
+</div>
+</section>
+
+<section id="hub-paradox">
+<h1>Finding 4: The Hub Gene Paradox</h1>
+
+<div class="card card-purple">
+<p><strong>Hub genes are methylated but NOT DE.</strong> Blue hub genes: DMR OR = 1.97 (padj = 0.033), 0 DE. kME vs methylation: &rho; = +0.176, p = 0.007. Contradicts the buffering hypothesis.</p>
+</div>
+
+<p>Hubs are MORE methylated because of their topological importance, but the methylation signal does not translate to expression change. Methylation marks network position, not expression level.</p>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="figures/module-level/fig19_hub_gene_connectivity_vs_methylation.png" alt="Hub connectivity" onclick="openLightbox(this)">
+<div class="caption"><strong>Hub Connectivity vs Methylation.</strong> &rho;=+0.176, p=0.007.</div>
+</div>
+<div class="fig-card">
+<img src="figures/module-level/fig15_hub_gene_methylation_status.png" alt="Hub status" onclick="openLightbox(this)">
+<div class="caption"><strong>Hub Gene Methylation Status.</strong> Methylated but not DE.</div>
+</div>
+</div>
+</section>
+
+<section id="four-layer">
+<h1>Finding 5: The Four-Layer Epigenetic Regulation Model</h1>
+
+<div class="stats-grid">
+  <div class="stat-card" style="border-top:3px solid var(--accent2)"><div class="number">Layer 1</div><div class="label">Methylated but Expression-Protected TFs</div><p style="font-size:11px;color:var(--text2);margin-top:6px">TFs enriched for DMPs (OR=1.607) but 0/6 DE TFs methylated.</p></div>
+  <div class="stat-card" style="border-top:3px solid var(--accent)"><div class="number">Layer 2</div><div class="label">Topology-Marked Hubs</div><p style="font-size:11px;color:var(--text2);margin-top:6px">Hubs methylated (&rho;=+0.176) but NOT DE.</p></div>
+  <div class="stat-card" style="border-top:3px solid var(--warn)"><div class="number">Layer 3</div><div class="label">Module-Targeted Regulation</div><p style="font-size:11px;color:var(--text2);margin-top:6px">Yellow enriched (Fisher p&lt;0.05).</p></div>
+  <div class="stat-card" style="border-top:3px solid var(--purple)"><div class="number">Layer 4</div><div class="label">Distal Regulatory Elements</div><p style="font-size:11px;color:var(--text2);margin-top:6px">63% DMPs intergenic/intronic.</p></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/entropy_novel/figures/M04_four_layer_model.png" alt="Four-layer" onclick="openLightbox(this)">
+<div class="caption"><strong>Four-Layer Model.</strong> Hierarchical epigenetic regulation.</div>
+</div>
+<div class="fig-card">
+<img src="results/publication_figures/fig07_four_layer_model.png" alt="Four-layer pub" onclick="openLightbox(this)">
+<div class="caption"><strong>Publication-Ready Four-Layer Model.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="icp">
+<h1>Finding 6: 91.6% Intermediate CpG Promoters</h1>
+
+<div class="card card-warn">
+<p><strong>91.6% ICP, 6.5% HCP, 1.9% LCP.</strong> Diverges sharply from mammals (~70% HCP). Renders the CpG island model structurally inapplicable.</p>
+</div>
+
+<table>
+<tr><th>Class</th><th>Definition</th><th>D. laeve</th><th>Human</th></tr>
+<tr><td><strong>HCP</strong></td><td>CpG O/E &ge; 0.75 AND GC% &ge; 55%</td><td>6.5%</td><td>~72%</td></tr>
+<tr><td><strong>ICP</strong></td><td>CpG O/E &ge; 0.48 but not HCP</td><td>91.6%</td><td>~16%</td></tr>
+<tr><td><strong>LCP</strong></td><td>No window with CpG O/E &ge; 0.48</td><td>1.9%</td><td>~12%</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/promoter/02_plots_png/04_pie_chart_classes.png" alt="Promoter pie" onclick="openLightbox(this)">
+<div class="caption"><strong>Promoter Classification.</strong> 91.6% ICP dominance.</div>
+</div>
+<div class="fig-card">
+<img src="results/promoter/02_plots_png/01_scatter_GC_vs_OE.png" alt="GC vs O/E" onclick="openLightbox(this)">
+<div class="caption"><strong>GC% vs CpG O/E.</strong> Most cluster in ICP zone.</div>
+</div>
+</div>
+</section>
+
+<section id="tf-protection">
+<h1>Finding 7: TFs Are Methylated but Expression-Protected</h1>
+
+<div class="card card-err">
+<p><strong>REVISED (Mar 2026):</strong> DeepTFactor CNN-based TF identification (2,217 TFs from 73,425 proteins) shows TFs are <strong>ENRICHED</strong> for DMPs (OR = 1.607, p = 4.32e-13) and DMRs (OR = 1.645, p = 3.33e-06). The old keyword-based finding (OR = 0.77 depleted) was an artifact of incomplete TF identification.</p>
+</div>
+
+<div class="card card-green">
+<p><strong>The paradox:</strong> 14.8% of TFs have DMPs (vs 9.8% non-TFs), yet <strong>0/6 DE TFs are methylated</strong>. Methylation targets TFs but does NOT change their expression. Top methylated TFs: ZFP2 (30 DMPs), Mafb (25), ATF2 (18), Hr96 (18). DE TFs (Scrt1, REPTOR-BP, Y-box, sox8, CEBPA, Catenin) achieve expression changes WITHOUT methylation.</p>
+</div>
+
+<h4>TE-DMP Genomic Context (New)</h4>
+<div class="card card-accent">
+<p><strong>51.1% of DMPs overlap TEs</strong> (9,583/18,754). TE-DMPs are enriched for intergenic regions (OR = 1.305, p = 3.10e-17). DNA transposons dominate (53%), followed by LINEs (36%). 66.5% of DMRs overlap TEs.</p>
+</div>
+
+<h4>Additional Findings</h4>
+<div class="card">
+<p>No module shows significant concordance with the classical model (all padj > 0.3). Concordance rates hover around 50% (chance). Yellow trends toward <em>anti</em>-concordance (43.9%, p=0.027).</p>
+</div>
+
+<div class="card card-accent">
+<p><strong>Blue module hub paradox:</strong> Hub DMP rate = 26.3% vs nonhub = 16.5% (padj = 0.005). Black: 0% hub DMP rate (padj = 0.020).</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/te_tf_landscape/plots/06_tf_vs_nontf_methylation_rate.png" alt="TF enrichment" onclick="openLightbox(this)">
+<div class="caption"><strong>TF vs Non-TF Methylation Rates.</strong> TFs ENRICHED (DeepTFactor).</div>
+</div>
+<div class="fig-card">
+<img src="results/te_tf_landscape/plots/07_tf_dmp_region_distribution.png" alt="TF regions" onclick="openLightbox(this)">
+<div class="caption"><strong>TF DMP Region Distribution.</strong> Gene body dominant.</div>
+</div>
+<div class="fig-card">
+<img src="results/te_tf_landscape/plots/01_dmp_genomic_context_te_vs_nonte.png" alt="TE context" onclick="openLightbox(this)">
+<div class="caption"><strong>TE vs Non-TE DMP Context.</strong> TE-DMPs enriched intergenic.</div>
+</div>
+<div class="fig-card">
+<img src="results/sox19a_tf_motifs/plots/04_tf_nontf_region_comparison.png" alt="ChIPseeker TF" onclick="openLightbox(this)">
+<div class="caption"><strong>TF vs Non-TF Regions (ChIPseeker).</strong> TFs: 25% promoter.</div>
+</div>
+<div class="fig-card">
+<img src="results/novel_findings/plots/fig_G01_TF_methylation_protection.png" alt="TF protection old" onclick="openLightbox(this)">
+<div class="caption"><strong>Old Keyword Analysis (superseded).</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/novel_findings/plots/fig_G03_concordance_heatmap.png" alt="Concordance" onclick="openLightbox(this)">
+<div class="caption"><strong>Concordance Heatmap.</strong> All near 50% (chance).</div>
+</div>
+<div class="fig-card">
+<img src="results/novel_findings/plots/fig_G05_hub_vs_nonhub_dmps.png" alt="Hub vs nonhub" onclick="openLightbox(this)">
+<div class="caption"><strong>Hub vs Nonhub DMP Rates.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/novel_findings/plots/fig_G07_dmp_cluster_size_distribution.png" alt="DMP clusters" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Cluster Sizes.</strong> 73x above expected rate.</div>
+</div>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('home')">&larr; Home</a>
+  <a onclick="goToPage('methylation')">Methylation Pipeline &rarr;</a>
+</div>
+</div><!-- end page-findings -->
+
+<!-- ================================================================ -->
+<!-- PAGE: METHYLATION PIPELINE -->
+<!-- ================================================================ -->
+<div class="page" id="page-methylation">
+
+<div class="page-header">
+  <span class="page-num">3 / 9</span>
+  <span class="page-title">Methylation Pipeline</span>
+</div>
+
+<section id="meth-qc">
+<h1>Methylation Pipeline</h1>
+<h2>Stage 1: Quality Control</h2>
+
+<div class="method-box">
+<div class="why">
+<h4>Why BSseq + Bismark?</h4>
+<p><strong>Bismark</strong> (Krueger & Andrews, 2011) is the gold standard for bisulfite sequencing. <strong>BSseq</strong> (Hansen et al., 2012) provides R/Bioconductor infrastructure. Pipeline Olympics (NAR 2025) confirmed Bismark has the best memory footprint (16 GB).</p>
+</div>
+<div class="who">
+<h4>Precedent</h4>
+<p>Used by ENCODE, Roadmap Epigenomics, BLUEPRINT. Recently applied to non-model organisms via DMRichR FAIRification (Bioinformatics Advances, 2025).</p>
+</div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/methylation/PNGs/methylation_density.png" alt="Density" onclick="openLightbox(this)">
+<div class="caption"><strong>Methylation Density.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/PNGs/sample_correlation_heatmap.png" alt="Correlation" onclick="openLightbox(this)">
+<div class="caption"><strong>Sample Correlation.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/PNGs/pca_analysis.png" alt="PCA" onclick="openLightbox(this)">
+<div class="caption"><strong>PCA of Methylation.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="meth-dmp">
+<h2>Stage 2: DMPs &amp; DMRs</h2>
+
+<div class="method-box">
+<div class="why">
+<h4>Why DSS?</h4>
+<p>Beta-binomial model with arcsine link and Wald test. Proper dispersion estimation with n=2 replicates. Ranked top performer in DMR benchmarking (Wu et al., 2021).</p>
+</div>
+<div class="who">
+<h4>Precedent</h4>
+<p>Recommended by IHEC. Used in single-cell methylomes (Luo et al. 2018 Science) and DMRichR pipeline.</p>
+</div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">18,754</div><div class="label">DMPs (padj &lt; 0.05)</div></div>
+  <div class="stat-card"><div class="number">1,424</div><div class="label">DMRs</div></div>
+  <div class="stat-card"><div class="number">~50/50</div><div class="label">Hyper/Hypo Ratio</div></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/methylation/PNGs/manhattan_plot_methylation_differences.png" alt="Manhattan" onclick="openLightbox(this)">
+<div class="caption"><strong>Manhattan Plot.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/PNGs/volcano_plot_dmps.png" alt="Volcano" onclick="openLightbox(this)">
+<div class="caption"><strong>Volcano Plot.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/PNGs/dmp_chromosome_distribution.png" alt="Chrom dist" onclick="openLightbox(this)">
+<div class="caption"><strong>Chromosome Distribution.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="meth-annot">
+<h2>Stage 3: Genomic Annotation</h2>
+
+<div class="method-box">
+<div class="why"><h4>Why ChIPseeker?</h4><p>Priority-based annotation relative to gene features. >4,000 citations. Integrates with clusterProfiler.</p></div>
+<div class="who"><h4>Precedent</h4><p>Standard in epigenomics. Alternative: HOMER.</p></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/methylation/ChIPseeker/dmp_chipseeker_annotation_bar.png" alt="Bar" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Genomic Region Distribution.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/ChIPseeker/dmp_chipseeker_annotation_pie.png" alt="Pie" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Annotation Pie Chart.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="meth-enrich">
+<h2>Stage 4: Functional Enrichment</h2>
+
+<div class="method-box">
+<div class="why"><h4>Why STRING-based?</h4><p>Non-model organism -- no curated GO annotations. STRING orthology-transferred annotations + clusterProfiler hypergeometric test with BH correction.</p></div>
+<div class="who"><h4>Precedent</h4><p>Used in oyster, honeybee, and other non-model epigenomics. clusterProfiler: >20,000 citations.</p></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/methylation/Enrichment/dmp_go_all_dotplot.png" alt="GO" onclick="openLightbox(this)">
+<div class="caption"><strong>GO Enrichment.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/Enrichment/dmp_kegg_dotplot.png" alt="KEGG" onclick="openLightbox(this)">
+<div class="caption"><strong>KEGG Enrichment.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="meth-te">
+<h2>Stage 5: Transposable Element Methylation</h2>
+
+<div class="card card-accent">
+<p><strong>Key finding:</strong> TE methylation is essentially UNCHANGED during regeneration (all Cohen's d &lt; 0.01). DMPs overlap TEs but TE methylation itself doesn't change. TEs provide genomic substrate, not targets.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/methylation/TE_Analysis/barplot_DMP_count_by_TE_class.png" alt="DMP by TE" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Counts by TE Class.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/methylation/TE_Analysis/cohens_d_by_TE_class.png" alt="Cohen's d" onclick="openLightbox(this)">
+<div class="caption"><strong>Cohen's d by TE Class.</strong> All &lt; 0.01.</div>
+</div>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('findings')">&larr; Key Findings</a>
+  <a onclick="goToPage('rnaseq')">RNA-seq Pipeline &rarr;</a>
+</div>
+</div><!-- end page-methylation -->
+
+<!-- ================================================================ -->
+<!-- PAGE: RNA-SEQ -->
+<!-- ================================================================ -->
+<div class="page" id="page-rnaseq">
+
+<div class="page-header">
+  <span class="page-num">4 / 9</span>
+  <span class="page-title">RNA-seq Pipeline</span>
+</div>
+
+<section id="rnaseq-qc">
+<h1>RNA-seq Pipeline</h1>
+<h2>Stage 1: Normalization &amp; QC</h2>
+
+<div class="method-box">
+<div class="why"><h4>Why DESeq2?</h4><p>Negative binomial GLM with dispersion shrinkage. Handles count data properly. Provides VST for downstream analyses. >50,000 citations.</p></div>
+<div class="who"><h4>Precedent</h4><p>Used in GTEx, TCGA, ENCODE. 2025 best practices (Nature Protocols) still recommends DESeq2.</p></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/rnaseq/Part1_QC/plots/PCA_by_condition.png" alt="PCA condition" onclick="openLightbox(this)">
+<div class="caption"><strong>PCA by Condition.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/rnaseq/Part1_QC/plots/PCA_by_experiment.png" alt="PCA experiment" onclick="openLightbox(this)">
+<div class="caption"><strong>PCA by Experiment.</strong> Batch effects visible.</div>
+</div>
+</div>
+</section>
+
+<section id="rnaseq-batch">
+<h2>Stage 2: Batch Correction</h2>
+
+<div class="method-box">
+<div class="why"><h4>Why limma removeBatchEffect?</h4><p>Removes known batch effects while preserving biology. Applied to VST for WGCNA, NOT for DE testing.</p></div>
+<div class="who"><h4>Precedent</h4><p>Recommended by WGCNA authors. Used in GTEx, TCGA multi-center studies.</p></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/rnaseq/Part1b_BatchCorrection/plots/PCA_corrected_by_condition.png" alt="PCA corrected" onclick="openLightbox(this)">
+<div class="caption"><strong>PCA After Batch Correction.</strong> Samples cluster by biology, not batch.</div>
+</div>
+</div>
+</section>
+
+<section id="rnaseq-deg">
+<h2>Stage 3: Differential Expression</h2>
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/rnaseq/Part2_DEGs/plots/all_DEGs_heatmap.png" alt="DEG heatmap" onclick="openLightbox(this)">
+<div class="caption"><strong>DEG Heatmap.</strong> Expression patterns across conditions.</div>
+</div>
+</div>
+</section>
+
+<section id="rnaseq-cluster">
+<h2>Stage 4: Expression Clustering</h2>
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/rnaseq/Part3_Hierarchical/plots/hierarchical_full.png" alt="Hier clustering" onclick="openLightbox(this)">
+<div class="caption"><strong>Hierarchical Clustering.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/rnaseq/Part4_Kmeans/plots/kmeans_centroids.png" alt="K-means" onclick="openLightbox(this)">
+<div class="caption"><strong>K-means Centroids.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="rnaseq-wgcna">
+<h2>Stage 5: WGCNA Co-expression Network</h2>
+
+<div class="method-box">
+<div class="why"><h4>Why WGCNA?</h4><p>Signed network, module detection, hub genes, trait correlations. >15,000 citations. We use signed adjacency, soft thresholding, blockwise detection.</p></div>
+<div class="who"><h4>Precedent</h4><p>GTEx, cancer subtyping, invertebrate transcriptomics in oyster, honeybee, Drosophila, coral.</p></div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">12</div><div class="label">Modules Detected</div></div>
+  <div class="stat-card"><div class="number">24</div><div class="label">Samples</div></div>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/rnaseq/Part5_WGCNA/plots/04_soft_thresholding_power.png" alt="Power" onclick="openLightbox(this)">
+<div class="caption"><strong>Soft Thresholding Power.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/rnaseq/Part5_WGCNA/plots/06_module_eigengenes_heatmap.png" alt="Eigengenes" onclick="openLightbox(this)">
+<div class="caption"><strong>Module Eigengene Heatmap.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/rnaseq/Part5_WGCNA/plots/07_module_trait_relationships.png" alt="Trait" onclick="openLightbox(this)">
+<div class="caption"><strong>Module-Trait Relationships.</strong></div>
+</div>
+</div>
+
+<details>
+<summary>View module enrichment plots</summary>
+<div class="fig-gallery">
+<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/26_KEGG_enrichment_blue.png" onclick="openLightbox(this)"><div class="caption"><strong>Blue Module.</strong></div></div>
+<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/30_BP_enrichment_yellow.png" onclick="openLightbox(this)"><div class="caption"><strong>Yellow Module.</strong></div></div>
+<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/27_BP_enrichment_turquoise.png" onclick="openLightbox(this)"><div class="caption"><strong>Turquoise Module.</strong></div></div>
+<div class="fig-card"><img src="results/rnaseq/Part5_WGCNA/plots/24_KEGG_enrichment_brown.png" onclick="openLightbox(this)"><div class="caption"><strong>Brown Module.</strong></div></div>
+</div>
+</details>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('methylation')">&larr; Methylation</a>
+  <a onclick="goToPage('integration')">Integration &rarr;</a>
+</div>
+</div><!-- end page-rnaseq -->
+
+<!-- ================================================================ -->
+<!-- PAGE: INTEGRATION -->
+<!-- ================================================================ -->
+<div class="page" id="page-integration">
+
+<div class="page-header">
+  <span class="page-num">5 / 9</span>
+  <span class="page-title">Integration Analysis</span>
+</div>
+
+<section id="int-corr">
+<h1>Integration Analysis</h1>
+<h2>Methylation vs Expression Correlation</h2>
+
+<div class="card card-accent">
+<p><strong>Global correlation is null</strong> (&rho; = -0.005, p = 0.80), but within-module correlations reach |r| = 0.81. Opposing module effects cancel at the genome-wide level.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="figures/gene-level/fig01_methylation_vs_expression_all_genes.png" alt="All genes" onclick="openLightbox(this)">
+<div class="caption"><strong>All Genes.</strong> &rho;=-0.005, p=0.80.</div>
+</div>
+<div class="fig-card">
+<img src="results/meth_expr_predictors/plots/fig_D4_global_vs_module_correlations.png" alt="Global vs module" onclick="openLightbox(this)">
+<div class="caption"><strong>Global vs Module.</strong> Module-level correlations are strong.</div>
+</div>
+<div class="fig-card">
+<img src="results/meth_expr_predictors/plots/fig_D1_meth_expr_correlation_heatmap.png" alt="Heatmap" onclick="openLightbox(this)">
+<div class="caption"><strong>Module x Region Correlation Heatmap.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/meth_expr_predictors/plots/fig_D5_top_predictors_bubble.png" alt="Bubble" onclick="openLightbox(this)">
+<div class="caption"><strong>Top Predictors.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="int-module">
+<h2>Module DMP Enrichment</h2>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="figures/module-level/fig13_DMP_enrichment_Fisher_test_per_module.png" alt="Fisher" onclick="openLightbox(this)">
+<div class="caption"><strong>Fisher's Test.</strong> Yellow significantly enriched.</div>
+</div>
+<div class="fig-card">
+<img src="figures/module-level/fig11_DMP_count_per_WGCNA_module.png" alt="DMP count" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Count Per Module.</strong></div>
+</div>
+<div class="fig-card">
+<img src="figures/module-level/fig17_heatmap_DMP_regions_across_modules.png" alt="Regions heatmap" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Regions Across Modules.</strong></div>
+</div>
+<div class="fig-card">
+<img src="figures/module-level/fig18_hyper_vs_hypo_methylation_per_module.png" alt="Hyper hypo" onclick="openLightbox(this)">
+<div class="caption"><strong>Hyper vs Hypo Per Module.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="int-intergenic">
+<h2>Intergenic Regulation Deep Dive</h2>
+
+<div class="card card-green"><h4>Evidence 1: Non-random spatial distribution</h4><p>73x clustering within 1 kb. Consistent with super-enhancer-like regulatory regions.</p></div>
+<div class="card card-green"><h4>Evidence 2: Distance-expression relationship</h4><p>Intergenic DMPs show stronger expression correlations than promoter DMPs.</p></div>
+<div class="card card-green"><h4>Evidence 3: Module specificity</h4><p>Yellow module's DMP burden concentrated in intergenic regions.</p></div>
+<div class="card card-green"><h4>Evidence 4: Sox19a case study</h4><p>Intergenic hypermethylation + INCREASED expression = silencer methylation.</p></div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/intergenic_regulation/plots/fig_H02_dmp_distance_distribution.png" alt="Distance" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP Distance Distribution.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/intergenic_regulation/plots/fig_H04_distal_vs_genic_volcano.png" alt="Volcano" onclick="openLightbox(this)">
+<div class="caption"><strong>Distal vs Genic.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/intergenic_regulation/plots/fig_H05_top_intergenic_candidates.png" alt="Candidates" onclick="openLightbox(this)">
+<div class="caption"><strong>Top Intergenic Candidates.</strong></div>
+</div>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('rnaseq')">&larr; RNA-seq</a>
+  <a onclick="goToPage('advanced')">Advanced Analyses &rarr;</a>
+</div>
+</div><!-- end page-integration -->
+
+<!-- ================================================================ -->
+<!-- PAGE: ADVANCED ANALYSES -->
+<!-- ================================================================ -->
+<div class="page" id="page-advanced">
+
+<div class="page-header">
+  <span class="page-num">6 / 9</span>
+  <span class="page-title">Advanced Analyses</span>
+</div>
+
+<section id="entropy">
+<h1>Advanced Analyses</h1>
+<h2>Entropy &amp; Information Theory</h2>
+
+<div class="card card-accent">
+<p><strong>Shannon entropy:</strong> H/Hmax = 0.80 -- methylation targeting is significantly non-random. Some modules preferentially targeted, others protected.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/entropy_novel/figures/M01_module_entropy.png" alt="Entropy" onclick="openLightbox(this)">
+<div class="caption"><strong>Entropy Landscape.</strong> H/Hmax = 0.80.</div>
+</div>
+<div class="fig-card">
+<img src="results/entropy_novel/figures/M03_region_asymmetry.png" alt="Asymmetry" onclick="openLightbox(this)">
+<div class="caption"><strong>Module Asymmetry.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="ml">
+<h2>Machine Learning Prediction</h2>
+
+<div class="card card-warn">
+<p><strong>ML CANNOT predict which methylated genes will be DE.</strong> Logistic AUC = 0.635. Linear R&sup2; = 0.29. Quadratic R&sup2; = 0.33. Confirms methylation is not a direct predictor.</p>
+</div>
+
+<table>
+<tr><th>Model</th><th>Performance</th><th>Interpretation</th></tr>
+<tr><td>Logistic (baseline)</td><td>AUC = 0.635</td><td>Weak predictor</td></tr>
+<tr><td>Weighted linear</td><td>R&sup2; = 0.292 (NS)</td><td>Binary switch confirmed</td></tr>
+<tr><td>Weighted quadratic</td><td>R&sup2; = 0.334 (NS)</td><td>No improvement</td></tr>
+<tr><td>Module features</td><td>R&sup2; = 0.362</td><td>Larger modules = higher rates (trivial)</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/machine_learning/figures/N03_model_comparison.png" alt="Models" onclick="openLightbox(this)">
+<div class="caption"><strong>Model Comparison.</strong> All fail to predict DE.</div>
+</div>
+</div>
+</section>
+
+<section id="te-age">
+<h2>TE Evolutionary Age Analysis</h2>
+
+<div class="card card-accent">
+<p><strong>TE methylation UNCHANGED during regeneration.</strong> All Cohen's d &lt; 0.01. TE age spans 0-207 My.</p>
+</div>
+
+<table>
+<tr><th>TE Class</th><th>Count</th><th>Median Age (My)</th><th>DMPs</th><th>Cohen's d</th></tr>
+<tr><td>DNA</td><td>1,230,562</td><td>35.3</td><td>5,186</td><td>0.003</td></tr>
+<tr><td>LINE</td><td>926,462</td><td>37.4</td><td>3,427</td><td>0.003</td></tr>
+<tr><td>LTR</td><td>356,849</td><td>47.3</td><td>787</td><td>0.003</td></tr>
+<tr><td>SINE</td><td>246,324</td><td>32.4</td><td>580</td><td>0.004</td></tr>
+<tr><td>RC/Helitron</td><td>96,373</td><td>42.1</td><td>408</td><td>0.003</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/te_age_methylation/figures/O01_te_age_landscape.png" alt="TE age" onclick="openLightbox(this)">
+<div class="caption"><strong>TE Age Landscape.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/te_age_methylation/figures/O03_dmp_by_te_class.png" alt="DMP by TE" onclick="openLightbox(this)">
+<div class="caption"><strong>DMP by TE Class.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="dmr-spatial">
+<h2>DMR Spatial Analysis</h2>
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/dmr_spatial/figures/J01_dmr_size_vs_cpg.png" alt="DMR size" onclick="openLightbox(this)">
+<div class="caption"><strong>DMR Size Distribution.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/dmr_spatial/figures/J02_dmr_region_distribution.png" alt="DMR region" onclick="openLightbox(this)">
+<div class="caption"><strong>DMR Region Distribution.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/dmr_spatial/figures/J06_dmr_meth_vs_expression.png" alt="DMR meth expr" onclick="openLightbox(this)">
+<div class="caption"><strong>DMR Methylation vs Expression.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="promoter">
+<h2>Promoter CpG Classification</h2>
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/promoter/02_plots_png/05_methylation_by_class_cov5.png" alt="By class" onclick="openLightbox(this)">
+<div class="caption"><strong>Methylation by Promoter Class.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/promoter/02_plots_png/08_methylation_vs_expression_by_class.png" alt="Meth expr class" onclick="openLightbox(this)">
+<div class="caption"><strong>Meth vs Expr by Promoter Class.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="threshold-sensitivity">
+<h2>Threshold Sensitivity</h2>
+
+<div class="card card-green">
+<p><strong>Yellow module is the ONLY module with robust DMP enrichment</strong> -- significant at 68% of 25 threshold combinations (17/25). Blue: 12% (3/25). All others: 0%.</p>
+</div>
+
+<table>
+<tr><th>Scenario</th><th>FDR</th><th>|diff|</th><th>DMPs</th><th>Yellow padj</th><th>Blue padj</th></tr>
+<tr><td>Lenient</td><td>1.0</td><td>0.10</td><td>18,754</td><td>0.00027</td><td>0.089</td></tr>
+<tr><td>Default</td><td>0.05</td><td>0.10</td><td>~15,000</td><td>0.023</td><td>NS</td></tr>
+<tr><td>Strict</td><td>0.01</td><td>0.25</td><td>~3,500</td><td>0.005</td><td>0.094</td></tr>
+<tr><td>Very strict</td><td>0.001</td><td>0.30</td><td>1,483</td><td>0.15</td><td>NS</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/threshold_sensitivity/plots/fig_B1_module_DMP_enrichment_threshold_tile.png" alt="Tile" onclick="openLightbox(this)">
+<div class="caption"><strong>Module Enrichment Across Thresholds.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/threshold_sensitivity/plots/fig_C1_module_enrichment_scenarios.png" alt="Scenarios" onclick="openLightbox(this)">
+<div class="caption"><strong>Scenario Comparison.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="deep-analysis">
+<h2>Deep Methylation Analysis</h2>
+
+<div class="card card-accent">
+<p><strong>TFs enriched for DMPs</strong> (DeepTFactor: OR=1.607, p=4.32e-13; old keyword OR=0.322 was artifact). No dose-response: DE rate flat (0.6-2.7%) across methylation bins. 0/6 DE TFs are methylated.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/deep_analysis/plots/fig_F01_developmental_gene_dmp_enrichment.png" alt="Dev enrichment" onclick="openLightbox(this)">
+<div class="caption"><strong>Developmental Gene Enrichment.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/deep_analysis/plots/fig_F04_methylation_dosage_response.png" alt="Dosage" onclick="openLightbox(this)">
+<div class="caption"><strong>Dosage Response.</strong> Flat.</div>
+</div>
+<div class="fig-card">
+<img src="results/deep_analysis/plots/fig_F12_module_methylation_direction.png" alt="Direction" onclick="openLightbox(this)">
+<div class="caption"><strong>Module Methylation Direction.</strong> 10/12 hypo-dominant.</div>
+</div>
+</div>
+</section>
+
+<section id="morphogenesis">
+<h2>Morphogenesis &amp; Category Enrichment</h2>
+
+<div class="card card-accent">
+<p><strong>Enriched:</strong> TFs (21%, OR=1.45, padj=0.0001), Cytoskeleton (21.2%, OR=1.45, padj=0.003). <strong>Depleted:</strong> RNA Processing (12%, OR=0.72, padj=0.038).</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/morphogenesis_enrichment/figures/I01_category_dmp_enrichment.png" alt="Category" onclick="openLightbox(this)">
+<div class="caption"><strong>Category DMP Enrichment.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/morphogenesis_enrichment/figures/I04_category_module_heatmap.png" alt="Category module" onclick="openLightbox(this)">
+<div class="caption"><strong>Category x Module Crosstab.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="dmr-deep">
+<h2>DMR Deep Analysis</h2>
+
+<div class="card card-err">
+<p><strong>0/60 large DMRs associate with DE genes.</strong> Cytoskeleton enriched (OR=2.30, padj=1.1e-6). TFs enriched for DMRs (OR=1.58, padj=0.004) but depleted for DMPs -- different methylation modalities target different gene classes.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/dmr_deep_analysis/figures/L01_dmr_category_enrichment.png" alt="DMR category" onclick="openLightbox(this)">
+<div class="caption"><strong>DMR Category Enrichment.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/dmr_deep_analysis/figures/L02_module_tf_dmp_dmr_rates.png" alt="TF rates" onclick="openLightbox(this)">
+<div class="caption"><strong>Module TF DMP/DMR Rates.</strong></div>
+</div>
+</div>
+</section>
+
+<section id="synthesis">
+<h2>Synthesis &amp; Integrated Model</h2>
+
+<h3>Module-Level Evidence Matrix</h3>
+<table>
+<tr><th>Module</th><th>Size</th><th>% DMP</th><th>DMP padj</th><th>Cohen's d</th><th>Direction</th><th>Top GO</th></tr>
+<tr><td style="color:#FFD700">Yellow</td><td>1,809</td><td>19.5%</td><td>0.00027</td><td>-1.83</td><td>DOWN</td><td>Mitotic cell cycle</td></tr>
+<tr><td style="color:#4169E1">Blue</td><td>2,311</td><td>17.6%</td><td>0.089</td><td>-1.67</td><td>DOWN</td><td>--</td></tr>
+<tr><td style="color:#8B4513">Brown</td><td>2,052</td><td>--</td><td>NS</td><td>+2.04</td><td>UP</td><td>--</td></tr>
+<tr><td style="color:#FF0000">Red</td><td>1,774</td><td>--</td><td>NS</td><td>+2.12</td><td>UP</td><td>Translation</td></tr>
+<tr><td style="color:#800080">Purple</td><td>121</td><td>--</td><td>NS</td><td>-3.06</td><td>DOWN</td><td>--</td></tr>
+</table>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/synthesis/figures/K04_regeneration_model.png" alt="Model" onclick="openLightbox(this)">
+<div class="caption"><strong>Topology-Marking Model.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/synthesis/figures/K03_module_evidence_heatmap.png" alt="Evidence" onclick="openLightbox(this)">
+<div class="caption"><strong>Module Evidence Heatmap.</strong></div>
+</div>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('integration')">&larr; Integration</a>
+  <a onclick="goToPage('context')">Context &rarr;</a>
+</div>
+</div><!-- end page-advanced -->
+
+<!-- ================================================================ -->
+<!-- PAGE: CONTEXT -->
+<!-- ================================================================ -->
+<div class="page" id="page-context">
+
+<div class="page-header">
+  <span class="page-num">7 / 9</span>
+  <span class="page-title">Context &amp; Literature</span>
+</div>
+
+<section id="methods">
+<h1>Methods &amp; Justification</h1>
+<table>
+<tr><th>Method</th><th>Tool</th><th>Why</th><th>Alternatives</th><th>Reference</th></tr>
+<tr><td>BS-seq alignment</td><td>Bismark</td><td>Best memory, gold standard</td><td>bwa-meth, BSMAP</td><td>Krueger 2011; Pipeline Olympics 2025</td></tr>
+<tr><td>DMP/DMR detection</td><td>DSS</td><td>Beta-binomial, works with n=2</td><td>methylKit, dmrseq</td><td>Feng 2014; Wu 2021</td></tr>
+<tr><td>Annotation</td><td>ChIPseeker</td><td>Priority-based, Bioconductor</td><td>HOMER, annotatr</td><td>Yu 2015</td></tr>
+<tr><td>RNA-seq</td><td>DESeq2</td><td>NB GLM, shrinkage</td><td>edgeR, limma</td><td>Love 2014</td></tr>
+<tr><td>Co-expression</td><td>WGCNA</td><td>Signed network, trait correlation</td><td>CEMiTool, MEGENA</td><td>Langfelder 2008</td></tr>
+<tr><td>TF prediction</td><td>DeepTFactor</td><td>CNN-based, no DB needed</td><td>PlantTFcat, HMMER</td><td>Kim 2021</td></tr>
+<tr><td>Promoter class</td><td>Weber criteria</td><td>Standard HCP/ICP/LCP</td><td>HMM-based CGI</td><td>Weber 2007</td></tr>
+<tr><td>MI</td><td>Custom R</td><td>Model-free dependence</td><td>Chi-square</td><td>Cover & Thomas 2006</td></tr>
+<tr><td>TE age</td><td>Kimura 2-param</td><td>Standard in TE biology</td><td>Jukes-Cantor</td><td>Kimura 1980</td></tr>
+</table>
+</section>
+
+<section id="cross-species">
+<h1>Cross-Species Comparison</h1>
+<table>
+<tr><th>Species</th><th>Phylum</th><th>CpG Meth</th><th>Regen?</th><th>Dominant Pattern</th><th>Promoter</th></tr>
+<tr><td><em>D. laeve</em> (this study)</td><td>Mollusca</td><td>~25%</td><td>Yes (tail)</td><td>Intergenic/intronic</td><td>91.6% ICP</td></tr>
+<tr><td><em>Danio rerio</em></td><td>Chordata</td><td>~80%</td><td>Yes</td><td>Stable during regen</td><td>CpG islands</td></tr>
+<tr><td><em>Schmidtea</em></td><td>Platyhelminthes</td><td>~0%</td><td>Yes (whole body)</td><td>ABSENT</td><td>N/A</td></tr>
+<tr><td><em>Crassostrea</em></td><td>Mollusca</td><td>~15%</td><td>No</td><td>Gene body</td><td>Bimodal</td></tr>
+<tr><td><em>Hydra</em></td><td>Cnidaria</td><td>~28%</td><td>Yes</td><td>Intronic TE</td><td>Unknown</td></tr>
+<tr><td><em>Apis mellifera</em></td><td>Arthropoda</td><td>~0.2%</td><td>No</td><td>>80% exonic</td><td>Bimodal</td></tr>
+<tr><td><em>B. glabrata</em></td><td>Mollusca</td><td>~2%</td><td>No</td><td>Only other gastropod</td><td>Unknown</td></tr>
+</table>
+
+<div class="card card-purple">
+<h4>Key Insight</h4>
+<p>The Weber HCP/ICP/LCP classification has <strong>never been applied to an invertebrate genome before</strong>. Planarians (champion regenerators) have ZERO methylation. Zebrafish methylation is STABLE during regeneration. Our finding of dynamic methylation during invertebrate regeneration is unique.</p>
+</div>
+</section>
+
+<section id="landscape-2026">
+<h1>2026 Literature Landscape</h1>
+
+<h3>New Methods</h3>
+<div class="card">
+<ul>
+<li><strong>wgbstools (2026):</strong> Fragment-level methylation, 100x compression</li>
+<li><strong>MethyLasso (2024):</strong> GAM + fused lasso segmentation</li>
+<li><strong>Pipeline Olympics (NAR 2025):</strong> Bismark confirmed best memory -- validates our choice</li>
+<li><strong>DMRichR FAIRification (2025):</strong> Non-model organisms -- mirrors our approach</li>
+</ul>
+</div>
+
+<h3>ML Revolution</h3>
+<div class="card">
+<ul>
+<li><strong>DeepMethyGene (2025):</strong> R&sup2;=0.640 in humans. Human-specific.</li>
+<li><strong>MethylGPT (2024/2025):</strong> R=0.929 on 154K human methylomes</li>
+<li><strong>CpGPT (2024):</strong> Pre-trained on >1,500 datasets</li>
+<li><em>All human-specific -- cannot be applied to D. laeve</em></li>
+</ul>
+</div>
+
+<h3>Invertebrate Methylation</h3>
+<div class="card">
+<ul>
+<li><strong>Genes Special Issue (2025):</strong> "The Enigmatic Role of DNA Methylation in Invertebrates"</li>
+<li><strong>Gastropod review (Life 2024):</strong> DNMT1 drives CG maintenance; only B. glabrata published</li>
+<li><em>Our study = second gastropod whole methylome ever</em></li>
+</ul>
+</div>
+
+<h3>Regeneration Epigenomics</h3>
+<div class="card">
+<ul>
+<li><strong>Comparative regen multi-omics (Nature Comms 2026):</strong> AP-1 binding conserved</li>
+<li><strong>Positional memory (Nature 2025):</strong> Molecular basis of positional memory</li>
+<li><strong>Zebrafish (Genome Biology 2020):</strong> Methylation STABLE; chromatin accessibility drives it</li>
+<li><em>No invertebrate regeneration-methylation study before ours</em></li>
+</ul>
+</div>
+</section>
+
+<section id="whats-missing">
+<h1>What's Missing -- Honest Assessment</h1>
+
+<div class="card card-err">
+<h4>Critical Gaps</h4>
+<ol>
+<li><strong>No ATAC-seq:</strong> Need open chromatin to confirm intergenic DMPs as regulatory elements</li>
+<li><strong>Only 2 WGBS replicates:</strong> Limits power and heterogeneity analysis</li>
+<li><strong>No Hi-C:</strong> Can't confirm DMP-promoter physical interactions</li>
+<li><strong>No time course:</strong> Single timepoint only</li>
+<li><strong>No functional validation:</strong> No CRISPR, no DNMT inhibitors</li>
+</ol>
+</div>
+
+<div class="card card-warn">
+<h4>Analyses to Strengthen</h4>
+<ol>
+<li>DMR cross-validation with MethyLasso</li>
+<li>Methylation heterogeneity (Metheor: PDR/epipolymorphism)</li>
+<li>Co-methylation WGCNA on CpG beta values</li>
+<li>TSS distance systematic analysis</li>
+<li>Motif analysis at DMP clusters (BED files ready)</li>
+</ol>
+</div>
+
+<div class="card card-green">
+<h4>What We Got Right</h4>
+<ol>
+<li>Pipeline choice validated by 2025 benchmarking</li>
+<li>Non-model approach mirrors DMRichR FAIRification</li>
+<li>Multi-omics integration (meth + expr + network + TE)</li>
+<li>Information-theoretic approach (model-free)</li>
+<li>Honest negative results (ML fails, MI=0)</li>
+</ol>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('advanced')">&larr; Advanced</a>
+  <a onclick="goToPage('figures')">Figures &rarr;</a>
+</div>
+</div><!-- end page-context -->
+
+<!-- ================================================================ -->
+<!-- PAGE: FIGURES -->
+<!-- ================================================================ -->
+<div class="page" id="page-figures">
+
+<div class="page-header">
+  <span class="page-num">8 / 9</span>
+  <span class="page-title">Publication Figures &amp; Resources</span>
+</div>
+
+<section id="gallery">
+<h1>Publication-Ready Figures</h1>
+
+<h3>Gene-Level (fig01-fig10)</h3>
+<div class="fig-gallery">
+<div class="fig-card"><img src="figures/gene-level/fig01_methylation_vs_expression_all_genes.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 1.</strong> All genes</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig02_methylation_vs_expression_by_genomic_region.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 2.</strong> By region</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig03_correlation_strength_per_region.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 3.</strong> Correlation per region</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig04_hyper_hypo_up_down_quadrant_density.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 4.</strong> Quadrant density</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig05_promoter_methylation_vs_expression.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 5.</strong> Promoter</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig06_genebody_methylation_vs_expression.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 6.</strong> Gene body</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig07_top_significant_genes_labeled.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 7.</strong> Top genes</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig08_DMR_methylation_vs_expression.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 8.</strong> DMR vs expression</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig09_heatmap_top50_methylated_expressed_genes.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 9.</strong> Top 50 heatmap</div></div>
+<div class="fig-card"><img src="figures/gene-level/fig10_genomic_region_distribution_significant_genes.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 10.</strong> Region distribution</div></div>
+</div>
+
+<h3>Module-Level (fig11-fig19)</h3>
+<div class="fig-gallery">
+<div class="fig-card"><img src="figures/module-level/fig11_DMP_count_per_WGCNA_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 11.</strong> DMP per module</div></div>
+<div class="fig-card"><img src="figures/module-level/fig12_percent_genes_with_DMPs_per_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 12.</strong> % genes with DMPs</div></div>
+<div class="fig-card"><img src="figures/module-level/fig13_DMP_enrichment_Fisher_test_per_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 13.</strong> Fisher enrichment</div></div>
+<div class="fig-card"><img src="figures/module-level/fig14_genomic_region_of_DMPs_per_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 14.</strong> DMP regions</div></div>
+<div class="fig-card"><img src="figures/module-level/fig15_hub_gene_methylation_status.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 15.</strong> Hub methylation</div></div>
+<div class="fig-card"><img src="figures/module-level/fig16_module_expression_change_vs_DMP_burden.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 16.</strong> Expression vs DMP</div></div>
+<div class="fig-card"><img src="figures/module-level/fig17_heatmap_DMP_regions_across_modules.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 17.</strong> Regions heatmap</div></div>
+<div class="fig-card"><img src="figures/module-level/fig18_hyper_vs_hypo_methylation_per_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 18.</strong> Hyper vs hypo</div></div>
+<div class="fig-card"><img src="figures/module-level/fig19_hub_gene_connectivity_vs_methylation.png" onclick="openLightbox(this)"><div class="caption"><strong>Fig 19.</strong> Hub connectivity</div></div>
+</div>
+
+<h3>Summary / Publication Figures</h3>
+<div class="fig-gallery">
+<div class="fig-card"><img src="results/publication_figures/fig01_module_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 1.</strong> Module DMP enrichment</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig02_category_dmp_enrichment.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 2.</strong> Category enrichment</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig03_hub_methylation_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 3.</strong> Hub methylation</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig04_dmp_genomic_regions.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 4.</strong> DMP regions</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig05_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 5.</strong> Top 30 candidates</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig06_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 6.</strong> Evidence matrix</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig07_four_layer_model.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 7.</strong> Four-layer model</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig08_dmp_dmr_concordance.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 8.</strong> DMP-DMR concordance</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig09_methylation_threshold.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 9.</strong> Threshold</div></div>
+<div class="fig-card"><img src="results/publication_figures/fig10_module_evidence_heatmap.png" onclick="openLightbox(this)"><div class="caption"><strong>Pub 10.</strong> Module evidence</div></div>
+</div>
+</section>
+
+<section id="candidates">
+<h1>Candidate Genes for Validation</h1>
+<div class="fig-gallery">
+<div class="fig-card"><img src="results/candidate_genes/plots/fig_E2_top30_candidates_lollipop.png" onclick="openLightbox(this)"><div class="caption"><strong>Top 30 Candidates.</strong></div></div>
+<div class="fig-card"><img src="results/candidate_genes/plots/fig_E4_candidates_evidence_matrix.png" onclick="openLightbox(this)"><div class="caption"><strong>Evidence Matrix.</strong></div></div>
+<div class="fig-card"><img src="results/candidate_genes/plots/fig_E1_candidates_by_module.png" onclick="openLightbox(this)"><div class="caption"><strong>By Module.</strong></div></div>
+<div class="fig-card"><img src="results/candidate_genes/plots/fig_E3_sulfation_meth_vs_expr.png" onclick="openLightbox(this)"><div class="caption"><strong>Sulfation Genes.</strong></div></div>
+</div>
+</section>
+
+<section id="cross-species-figs">
+<h1>Cross-Species Figures</h1>
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/cross_species/figures/P01_methylation_levels.png" alt="Methylation levels" onclick="openLightbox(this)">
+<div class="caption"><strong>CpG Methylation Across Species.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/cross_species/figures/P02_regen_species_heatmap.png" alt="Regen heatmap" onclick="openLightbox(this)">
+<div class="caption"><strong>Regeneration Feature Comparison.</strong></div>
+</div>
+<div class="fig-card">
+<img src="results/cross_species/figures/P03_paradigm_shift.png" alt="Paradigm shift" onclick="openLightbox(this)">
+<div class="caption"><strong>Paradigm Shift.</strong> Every mammalian assumption rejected.</div>
+</div>
+</div>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('context')">&larr; Context</a>
+  <a onclick="goToPage('technical')">Technical &rarr;</a>
+</div>
+</div><!-- end page-figures -->
+
+<!-- ================================================================ -->
+<!-- PAGE: TECHNICAL -->
+<!-- ================================================================ -->
+<div class="page" id="page-technical">
+
+<div class="page-header">
+  <span class="page-num">9 / 9</span>
+  <span class="page-title">Technical Details</span>
+</div>
+
+<section id="formulas">
+<h1>Mathematical Formulas</h1>
+
+<div class="card card-accent">
+<h4>Mutual Information (MI)</h4>
+<pre>MI(X; Y) = sum sum p(x,y) * log2[ p(x,y) / (p(x) * p(y)) ]
+
+X in {hypermethylated, hypomethylated}
+Y in {upregulated, downregulated}
+
+Our result: MI = 0.00009 bits (p = 0.55)
+Maximum possible: 1 bit  |  Observed/Max: 0.009%</pre>
+</div>
+
+<div class="card card-green">
+<h4>Shannon Entropy</h4>
+<pre>H = -sum p_i * log2(p_i)
+H_max = log2(n modules)
+Normalized: H/H_max = 0.80  (1.0 = uniform, 0.0 = one module)</pre>
+</div>
+
+<div class="card card-warn">
+<h4>Cochran-Armitage Trend Test</h4>
+<pre>Tests: P(DE) increases with methylation magnitude?
+z = 1.009, p = 0.31  ->  No trend. Binary switch.</pre>
+</div>
+
+<div class="card card-purple">
+<h4>Fisher's Exact Test (Module Enrichment)</h4>
+<pre>              DMPs    No DMPs
+Module genes |  a  |    b    |
+Other genes  |  c  |    d    |
+
+OR = (a*d) / (b*c)
+TF enrichment (DeepTFactor): OR = 1.607, p = 4.32e-13
+Old keyword result (superseded): OR = 0.77, p = 5.87e-5</pre>
+</div>
+
+<div class="card card-accent">
+<h4>Kimura 2-Parameter &rarr; Million Years</h4>
+<pre>Time(My) = Kimura_div / (2 * 2.2e-9 * 1e6)
+Gastropod rate = 2.2e-9 per site per year
+1% Kimura ~ 2.3 My  |  10% ~ 22.7 My  |  50% ~ 113.6 My</pre>
+</div>
+
+<div class="card card-green">
+<h4>DSS DMP Detection (Beta-Binomial)</h4>
+<pre>X_ij ~ BetaBinomial(n_ij, pi_ij, phi_j)
+Test: arcsin(sqrt(pi_control)) - arcsin(sqrt(pi_amputated))
+DMP: FDR < 0.05 (BH)  |  DMR: areaStat = sum |Wald| in region</pre>
+</div>
+</section>
+
+<section id="code-flow">
+<h1>Pipeline Code Flow</h1>
+
+<h3>Step 1: Methylation (cluster/01-methylation/)</h3>
+<pre>sbatch run.slurm 01_quality_control.R        # Bismark -> BSseq
+sbatch run.slurm 02_differential_methylation.R # DSS -> DMPs + DMRs
+sbatch run.slurm 03_genomic_annotation.R      # ChIPseeker
+sbatch run.slurm 04_functional_enrichment.R   # GO/KEGG
+sbatch run.slurm 05_te_methylation.R          # TE overlap</pre>
+
+<h3>Step 2: RNA-seq (cluster/02-rnaseq/)</h3>
+<pre>sbatch run.slurm 01_normalization.R           # DESeq2
+sbatch run.slurm 02_batch_correction.R        # limma
+sbatch run.slurm 03_differential_expression.R # DEGs
+sbatch run.slurm 04_hierarchical_clustering.R # Clustering
+sbatch run.slurm 05_kmeans_clustering.R       # K-means</pre>
+
+<h3>Step 3: Co-expression (cluster/03-coexpression/)</h3>
+<pre>sbatch run.slurm 01_wgcna_module_detection.R  # 64GB, 8 CPUs</pre>
+
+<h3>Step 4: Integration (cluster/04-integration/)</h3>
+<pre>sbatch run.slurm 01_methylation_vs_expression.R
+sbatch run.slurm 02_module_methylation_enrichment.R</pre>
+
+<h3>Step 5: WGCNA Sensitivity (cluster/08-wgcna-sensitivity/)</h3>
+<pre>sbatch run.slurm 01_parameter_sensitivity.R    # 3-5h
+sbatch run.slurm 02_improved_wgcna.R           # 1-2h
+sbatch run.slurm 03_methylation_network_integration.R  # 2-4h
+sbatch run.slurm 04_enrichment_across_parameters.R     # 6-10h (independent)</pre>
+
+<h3>Step 6: Local Analysis (18 scripts)</h3>
+<pre>Rscript local/01_blue_module_enrichment_plots.R
+...
+Rscript local/16_cross_species_comparison.R
+Rscript local/17_te_tf_methylation_landscape.R     # NEW
+Rscript local/18_sox19a_gviz_tf_chipseeker.R       # NEW</pre>
+
+<h3>Data Dependency Diagram</h3>
+<pre>
+Bismark CpG Reports -> BSseq -> DMPs/DMRs -+
+                                            |
+HTSeq Counts -> DESeq2 -> Batch -> DEGs -+ |
+                                          | |
+                       K-means/Hier <-----+ |
+                            |               |
+                       WGCNA Modules -+     |
+                            |         |     |
+                       Hub Genes      v     v
+                            |    INTEGRATION
+                            |    Meth vs Expr
+                            |    Module Enrichment
+                            |         |
+                 +----------+---------+----------+
+                 v          v         v          v
+           Entropy/MI    ML Models  Cross-Spp  TE/TF Landscape
+           Binary Switch AUC=0.635 9 Species   TFs ENRICHED (OR=1.6)
+                                                0/6 DE TFs methylated</pre>
+</section>
+
+<section id="most-probable">
+<h1>Most Probable Gene: Sox19a</h1>
+
+<div class="card card-accent">
+<p>Based on composite evidence, <strong>Sox19a</strong> is the strongest candidate for methylation-mediated regulation during regeneration.</p>
+</div>
+
+<table>
+<tr><th>Evidence</th><th>Value</th><th>Significance</th></tr>
+<tr><td>Expression</td><td>log2FC = 1.45, padj = 0.044</td><td>Significantly upregulated</td></tr>
+<tr><td>DMP count</td><td>13 DMPs</td><td>Among highest per-gene</td></tr>
+<tr><td>DMP location</td><td>All intergenic, 4-5 kb upstream</td><td>Consistent with silencer regulation</td></tr>
+<tr><td>DMP direction</td><td>Hypermethylated</td><td>Silencer inactivation = UP</td></tr>
+<tr><td>Gene function</td><td>SRY-related HMG box TF</td><td>Conserved developmental regulator</td></tr>
+</table>
+
+<div class="card card-purple">
+<p>Sox19a is regulated through <strong>intergenic</strong> DMPs. Methylation of an upstream silencer reduces repression, producing the <em>opposite</em> of the textbook prediction: methylation &rarr; activation. This also explains MI = 0: sometimes methylation of a silencer causes activation, sometimes methylation of an enhancer causes silencing.</p>
+</div>
+
+<div class="card card-accent">
+<p><strong>Script 18 Confirmation:</strong> All 13 DMPs are hypermethylated (mean diff = +0.289), located in Distal Intergenic / Downstream regions. ChIPseeker annotations: 2 Downstream (&le;300bp), 11 Distal Intergenic. Sox19a log2FC = +1.446 (upregulated). Prediction: <strong>silencer inactivation</strong> via hypermethylation.</p>
+</div>
+
+<div class="fig-gallery">
+<div class="fig-card">
+<img src="results/sox19a_tf_motifs/plots/02_tf_dmp_pie_chart.png" alt="TF pie" onclick="openLightbox(this)">
+<div class="caption"><strong>TF DMP Pie Chart.</strong> ChIPseeker regions for TF genes.</div>
+</div>
+<div class="fig-card">
+<img src="results/sox19a_tf_motifs/plots/03_nontf_dmp_pie_chart.png" alt="NonTF pie" onclick="openLightbox(this)">
+<div class="caption"><strong>Non-TF DMP Pie Chart.</strong> Compare with TFs above.</div>
+</div>
+</div>
+</section>
+
+<section id="wgcna-justify">
+<h1>Is WGCNA the Best Choice?</h1>
+
+<div class="card card-accent">
+<p><strong>Yes, for our purpose.</strong> >15,000 citations. No alternative consistently outperforms it for module detection + trait correlation.</p>
+</div>
+
+<table>
+<tr><th>Tool</th><th>Advantage</th><th>Why Not</th></tr>
+<tr><td><strong>WGCNA</strong> (used)</td><td>Standard, robust, trait correlation</td><td>Our choice</td></tr>
+<tr><td>CEMiTool</td><td>Easier</td><td>Less control</td></tr>
+<tr><td>MEGENA</td><td>Hierarchical modules</td><td>Less established</td></tr>
+<tr><td>GENIE3</td><td>Directed edges</td><td>Complementary</td></tr>
+<tr><td>iNETgrate</td><td>Integrated meth+expr</td><td>Future direction</td></tr>
+</table>
+
+<p><strong>Improvements planned:</strong> Bicor instead of Pearson, parameter sweep (7 filters x 9 powers), co-methylation WGCNA -- all in cluster/08-wgcna-sensitivity/.</p>
+</section>
+
+<section id="references">
+<h1>Key References</h1>
+
+<h3>Core Methods</h3>
+<ol>
+<li>Krueger F, Andrews SR (2011) Bismark. <em>Bioinformatics</em> 27:1571</li>
+<li>Feng H, Conneely KN, Wu H (2014) DSS. <em>NAR</em> 42:e69</li>
+<li>Love MI, Huber W, Anders S (2014) DESeq2. <em>Genome Biology</em> 15:550</li>
+<li>Langfelder P, Horvath S (2008) WGCNA. <em>BMC Bioinformatics</em> 9:559</li>
+<li>Weber M et al. (2007) Promoter methylation. <em>Nature Genetics</em> 39:457</li>
+<li>Yu G, Wang LG, He QY (2015) ChIPseeker. <em>Bioinformatics</em> 31:2382</li>
+</ol>
+
+<h3>2024-2026 Key Papers</h3>
+<ol start="7">
+<li>Pipeline Olympics (2025) WGBS benchmarking. <em>NAR</em> 53:gkaf970</li>
+<li>wgbstools (2026) Fragment-level analysis. <em>Life Science Alliance</em></li>
+<li>DMRichR FAIRification (2025). <em>Bioinformatics Advances</em></li>
+<li>MethNet (2024) Integrating methylation and expression. <em>Nature Communications</em></li>
+<li>DeepMethyGene (2025) Expression prediction. <em>BMC Bioinformatics</em></li>
+<li>TE methylation and age (2025). <em>Nature Aging</em></li>
+<li>Comparative regen multi-omics (2026). <em>Nature Communications</em></li>
+<li>Gastropod methylation (2024). <em>Life</em> 14</li>
+<li>Invertebrate epigenetic clocks (2025). <em>Frontiers in Genetics</em></li>
+</ol>
+</section>
+
+<section style="border-top:1px solid var(--border); padding-top:24px; margin-top:32px;">
+<p style="color:var(--text2); font-size:12px;">
+<strong>D. laeve Regeneration Epigenomics Wiki</strong> -- Generated March 2026<br>
+316 figures | 262 data tables | 3 manuscript drafts | 18 analysis scripts<br>
+Pipeline: Bismark &rarr; DSS &rarr; DESeq2 &rarr; WGCNA &rarr; Information Theory &rarr; ML &rarr; Gviz/Motifs<br>
+<em>This is a living document. New analyses integrated as completed.</em>
+</p>
+</section>
+
+<div class="page-nav">
+  <a onclick="goToPage('figures')">&larr; Figures</a>
+  <span></span>
+</div>
+</div><!-- end page-technical -->
+
+</div><!-- end main -->
+
+<script>
+// Page navigation
+const pages = ['home','findings','methylation','rnaseq','integration','advanced','context','figures','technical'];
+
+function goToPage(pageId) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target page
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+  // Update sidebar
+  document.querySelectorAll('.page-link').forEach(l => l.classList.remove('active'));
+  document.querySelector('.page-link[data-page="' + pageId + '"]').classList.add('active');
+  // Update URL hash
+  history.replaceState(null, null, '#' + pageId);
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+// Sidebar page links
+document.querySelectorAll('.page-link').forEach(link => {
+  link.addEventListener('click', function() {
+    goToPage(this.dataset.page);
+  });
+});
+
+// Sub-links: navigate to page first, then scroll to section
+document.querySelectorAll('.sub-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    const sectionId = href.replace('#', '');
+    // Find which page contains this section
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const page = section.closest('.page');
+      if (page) {
+        const pageId = page.id.replace('page-', '');
+        goToPage(pageId);
+        // Delay scroll to allow page to render
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    }
+  });
+});
+
+// Handle initial hash
+window.addEventListener('load', function() {
+  const hash = location.hash.replace('#', '');
+  if (hash && pages.includes(hash)) {
+    goToPage(hash);
+  } else if (hash) {
+    // Check if hash is a section ID
+    const section = document.getElementById(hash);
+    if (section) {
+      const page = section.closest('.page');
+      if (page) {
+        goToPage(page.id.replace('page-', ''));
+        setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);
+      }
+    }
+  }
+});
+
+// Lightbox
+function openLightbox(img) {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt || '';
+  lb.classList.add('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  const currentIdx = pages.findIndex(p => document.getElementById('page-' + p).classList.contains('active'));
+  if (e.key === 'ArrowRight' && currentIdx < pages.length - 1) {
+    goToPage(pages[currentIdx + 1]);
+  } else if (e.key === 'ArrowLeft' && currentIdx > 0) {
+    goToPage(pages[currentIdx - 1]);
+  }
+});
+</script>
+
+</body>
+</html>
