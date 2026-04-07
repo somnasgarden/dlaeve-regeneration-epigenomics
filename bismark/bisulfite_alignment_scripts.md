@@ -76,15 +76,15 @@ sbatch 06_standalone_coverage2cytosine.sh \
 ## Directory Structure
 
 .
-├── 01.RawData/          # Raw FASTQ inputs
-├── 03_cutadapt/         # Hard-clipped reads
-├── 05_trimmomatic/      # Adapter-trimmed paired reads
-├── 06_bismark_alignment/          # Aligned BAMs
-├── 07_methylation_extraction_and_reports/  # bam2nuc QC reports
-├── 08_deduplication/    # Deduplicated BAMs
-├── 09_methylation_calls/          # Final methylation output
-├── 00_Genoma/           # Reference genome and Bismark index
-└── slurm_logs/          # SLURM stdout/stderr logs
+├── 01.RawData/          # Raw FASTQ inputs 
+├── 03_cutadapt/         # Hard-clipped reads 
+├── 05_trimmomatic/      # Adapter-trimmed paired reads 
+├── 06_bismark_alignment/          # Aligned BAMs 
+├── 07_methylation_extraction_and_reports/  # bam2nuc QC reports 
+├── 08_deduplication/    # Deduplicated BAMs 
+├── 09_methylation_calls/          # Final methylation output 
+├── 00_Genoma/           # Reference genome and Bismark index 
+└── slurm_logs/          # SLURM stdout/stderr logs 
 
 ## Samples
 
