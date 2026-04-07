@@ -16,17 +16,17 @@ Removes the first 12 bases from each read using `cutadapt -u 12`. This accounts 
 
 ---
 
-### `01_prepare_bismark_genome.sh` — Genome indexing
-Prepares the reference genome for bisulfite alignment using `bismark_genome_preparation`. Runs with `--parallel 4` (2 internal processes × 4 threads = 8 CPUs total) and generates genomic composition statistics.
-
-**Output:** Bismark/Bowtie2 index files in the genome folder (`50-Metilacion/Genoma/`)
-
----
-
 ### `01_trimmomatic.sh` — Adapter trimming and quality filtering
 Runs `trimmomatic PE` on the cutadapt-clipped reads to remove Illumina TruSeq3 adapters and low-quality bases. Parameters: `LEADING:30 TRAILING:30 SLIDINGWINDOW:4:30 MINLEN:120`. Runs FastQC on all paired outputs for quality assessment.
 
 **Output:** `trimmed_*_R{1,2}.paired.fq.gz` in `05_trimmomatic/`
+
+---
+
+### `01_prepare_bismark_genome.sh` — Genome indexing
+Prepares the reference genome for bisulfite alignment using `bismark_genome_preparation`. Runs with `--parallel 4` (2 internal processes × 4 threads = 8 CPUs total) and generates genomic composition statistics.
+
+**Output:** Bismark/Bowtie2 index files in the genome folder (`50-Metilacion/Genoma/`)
 
 ---
 
